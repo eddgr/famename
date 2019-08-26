@@ -26,5 +26,26 @@
         "description": ""
       }
     }
+  },
+  "src/lib/components/containers/GenderSelectContainer.js": {
+    "description": "",
+    "displayName": "GenderSelectContainer",
+    "methods": [],
+    "props": {
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": ""
+      },
+      "nameOutput": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      }
+    }
   }
 }

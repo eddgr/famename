@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import GenderSelectContainer from './containers/GenderSelectContainer';
+
 /**
  * ExampleComponent is an example component.
  * It takes a property, `label`, and
@@ -10,23 +12,15 @@ import PropTypes from 'prop-types';
  */
 export default class Famename extends Component {
     render() {
-        const {id, genderSelect, setProps} = this.props;
+        const {id, genderSelect, setProps, nameOutput} = this.props;
 
-        const handleGenderButton = gender => {
-            setProps({
-                genderSelect: gender,
-            });
-        };
-
-        console.log('Props', this.props);
+        console.log('Main Props', this.props);
         return (
             <div id={id}>
-                Select a gender: <br />
-                <button onClick={() => handleGenderButton('MALE')}>Male</button>
-                <button onClick={() => handleGenderButton('FEMALE')}>
-                    Female
-                </button>
-                <button onClick={() => handleGenderButton('BOTH')}>Both</button>
+                <GenderSelectContainer
+                    setProps={setProps}
+                    nameOutput={nameOutput}
+                />
             </div>
         );
     }
