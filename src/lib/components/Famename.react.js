@@ -4,7 +4,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import GenderSelectContainer from './containers/GenderSelectContainer';
 import NavBar from './components/NavBar';
-import Search from './components/Search';
+import Compare from './components/Compare';
+import Rank from './components/Rank';
 
 /**
  * ExampleComponent is an example component.
@@ -33,7 +34,8 @@ export default class Famename extends Component {
                             )}
                             exact
                         />
-                        <Route path="/search" component={Search} />
+                        <Route path="/compare" component={Compare} />
+                        <Route path="/rank" component={Rank} />
                     </Switch>
                 </div>
             </BrowserRouter>

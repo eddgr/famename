@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 /**
  * This is where the NavBar lives
@@ -6,9 +7,9 @@ import React from 'react';
 export default function NavBar() {
     return (
         <div>
-            <li>Home</li>
-            <li>Search</li>
-            <li>Leaderboard</li>
+            <Link to="/">Home</Link>
+            <Link to="/compare">Compare</Link>
+            <Link to="/rank">Rank</Link>
         </div>
     );
 }
