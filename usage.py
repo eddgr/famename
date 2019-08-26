@@ -26,10 +26,11 @@ app.layout = html.Div([
         nameOutput=[],
         selectedName='',
     ),
-    dcc.Graph(id='output_graph', figure={})
+    dcc.Graph(id='output_graph')
 ])
 
 # callbacks
+# select gender
 @app.callback(
     Output('react', 'nameOutput'),
     [Input('react', 'genderSelect')]
@@ -49,11 +50,25 @@ def select_gender(gender):
 
     return random.sample(sorted_names, k=5)
 
+# hide graph on load
+@app.callback(
+    Output('output_graph', 'style'),
+    [Input('react', 'selectedName')]
+)
+def show_graph(name):
+    if name != '':
+        return {
+            'display': 'block'
+        }
+    return {
+        'display': 'none'
+    }
+
+# show graph and trend of name
 @app.callback(
     Output('output_graph', 'figure'),
     [Input('react', 'selectedName')]
 )
-
 def selected_name_graph(name):
     selected_name = df[df['Child\'s First Name'].str.upper() == name]
 
@@ -76,6 +91,7 @@ def selected_name_graph(name):
         'layout': go.Layout(title=name)
     }
     return figure
+# end callbacks
 
 # server
 if __name__ == '__main__':
