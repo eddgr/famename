@@ -1,0 +1,7 @@
+include famename/famename.min.js
+include famename/famename.min.js.map
+include famename/metadata.json
+include famename/package-info.json
+include README.md
+include LICENSE
+include package.json

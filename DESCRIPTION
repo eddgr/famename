@@ -1,0 +1,15 @@
+Package: famename
+Title: See the most popular baby names between 2011-20116
+Version: 0.0.1
+Authors @R: as.person(c(Edgar Ong <emailedgar@gmail.com>))
+Description: See the most popular baby names between 2011-20116
+Depends: R (>= 3.0.2)
+Imports: 
+Suggests: 
+License: MIT + file LICENSE
+URL: 
+BugReports: 
+Encoding: UTF-8
+LazyData: true
+Author: Edgar Ong [aut]
+Maintainer: Edgar Ong <emailedgar@gmail.com>
