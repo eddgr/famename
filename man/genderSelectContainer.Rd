@@ -10,9 +10,11 @@
 }
 
 \usage{
-genderSelectContainer(nameOutput=NULL)
+genderSelectContainer(nameOutput=NULL, selectedName=NULL)
 }
 
 \arguments{
 \item{nameOutput}{Unnamed list. }
+
+\item{selectedName}{Character. }
 }

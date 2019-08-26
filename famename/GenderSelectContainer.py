@@ -8,14 +8,15 @@ class GenderSelectContainer(Component):
 
 
 Keyword arguments:
-- nameOutput (list; optional)"""
+- nameOutput (list; optional)
+- selectedName (string; optional)"""
     @_explicitize_args
-    def __init__(self, nameOutput=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['nameOutput']
+    def __init__(self, nameOutput=Component.UNDEFINED, selectedName=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['nameOutput', 'selectedName']
         self._type = 'GenderSelectContainer'
         self._namespace = 'famename'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['nameOutput']
+        self.available_properties = ['nameOutput', 'selectedName']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

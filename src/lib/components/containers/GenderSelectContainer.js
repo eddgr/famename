@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function GenderSelectContainer(props) {
-    const [loading, setLoading] = useState(true);
     const {setProps, nameOutput} = props;
     const handleGenderButton = gender => {
         setProps({
@@ -12,13 +11,20 @@ export default function GenderSelectContainer(props) {
 
     const renderNames = () => {
         return nameOutput.map((name, index) => {
-            return <li key={index}>{name}</li>;
+            return (
+                <li
+                    key={index}
+                    onClick={() =>
+                        setProps({
+                            selectedName: name.toUpperCase(),
+                        })
+                    }
+                >
+                    {name}
+                </li>
+            );
         });
     };
-
-    useEffect(() => {
-        setLoading(false);
-    }, []);
 
     console.log('GenderSelectContainer props', props);
     return (
@@ -31,7 +37,7 @@ export default function GenderSelectContainer(props) {
                 </button>
                 <button onClick={() => handleGenderButton('BOTH')}>Both</button>
             </div>
-            <div>{!loading && renderNames()}</div>
+            <div>{renderNames()}</div>
         </div>
     );
 }
@@ -41,4 +47,5 @@ GenderSelectContainer.defaultProps = {};
 GenderSelectContainer.propTypes = {
     setProps: PropTypes.func,
     nameOutput: PropTypes.array,
+    selectedName: PropTypes.string,
 };

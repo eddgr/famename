@@ -10,13 +10,15 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 }
 
 \usage{
-famename(id=NULL, genderSelect=NULL, nameOutput=NULL)
+famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL)
 }
 
 \arguments{
 \item{id}{Character. The ID used to identify this component in Dash callbacks.}
 
 \item{genderSelect}{Character. }
+
+\item{selectedName}{Character. }
 
 \item{nameOutput}{Unnamed list. }
 }

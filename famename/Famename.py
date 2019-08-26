@@ -14,14 +14,15 @@ which is editable by the user.
 Keyword arguments:
 - id (string; optional): The ID used to identify this component in Dash callbacks.
 - genderSelect (string; optional)
+- selectedName (string; optional)
 - nameOutput (list; optional)"""
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, genderSelect=Component.UNDEFINED, nameOutput=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'genderSelect', 'nameOutput']
+    def __init__(self, id=Component.UNDEFINED, genderSelect=Component.UNDEFINED, selectedName=Component.UNDEFINED, nameOutput=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'genderSelect', 'selectedName', 'nameOutput']
         self._type = 'Famename'
         self._namespace = 'famename'
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'genderSelect', 'nameOutput']
+        self.available_properties = ['id', 'genderSelect', 'selectedName', 'nameOutput']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

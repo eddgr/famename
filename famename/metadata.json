@@ -18,6 +18,13 @@
         "required": false,
         "description": ""
       },
+      "selectedName": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
       "nameOutput": {
         "type": {
           "name": "array"
@@ -42,6 +49,13 @@
       "nameOutput": {
         "type": {
           "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "selectedName": {
+        "type": {
+          "name": "string"
         },
         "required": false,
         "description": ""

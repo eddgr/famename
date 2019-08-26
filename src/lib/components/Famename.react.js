@@ -12,7 +12,13 @@ import GenderSelectContainer from './containers/GenderSelectContainer';
  */
 export default class Famename extends Component {
     render() {
-        const {id, genderSelect, setProps, nameOutput} = this.props;
+        const {
+            id,
+            genderSelect,
+            setProps,
+            nameOutput,
+            selectedName,
+        } = this.props;
 
         console.log('Main Props', this.props);
         return (
@@ -34,5 +40,6 @@ Famename.propTypes = {
      */
     id: PropTypes.string,
     genderSelect: PropTypes.string,
+    selectedName: PropTypes.string,
     nameOutput: PropTypes.array,
 };

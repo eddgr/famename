@@ -1,8 +1,8 @@
 Package: famename
-Title: See the most popular baby names between 2011-20116
+Title: See the most popular baby names from NYC between 2011-2016
 Version: 0.0.1
 Authors @R: as.person(c(Edgar Ong <emailedgar@gmail.com>))
-Description: See the most popular baby names between 2011-20116
+Description: See the most popular baby names from NYC between 2011-2016
 Depends: R (>= 3.0.2)
 Imports: 
 Suggests: 
