@@ -16,7 +16,8 @@
     "author": "Edgar Ong <emailedgar@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "ramda": "^0.26.1"
+        "ramda": "^0.26.1",
+        "react-router-dom": "^5.0.1"
     },
     "devDependencies": {
         "@babel/core": "^7.5.4",
