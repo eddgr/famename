@@ -13,10 +13,10 @@ import datetime
 # data
 df = pd.read_csv('./data/Popular_Baby_Names.csv')
 # pdb.set_trace()
-# df['Child\'s First Name'] = df['Child\'s First Name'].str.upper()
 
 # app
 app = dash.Dash(__name__)
+app.title = 'Fame Name'
 
 # layout
 app.layout = html.Div([
