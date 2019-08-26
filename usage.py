@@ -30,12 +30,12 @@ app.layout = html.Div([
     [Input('react', 'genderSelect')]
 )
 def selectGender(gender):
-    rank = df[df['Rank'] < 6]
+    # rank = df[df['Rank'] < 6]
 
-    first_name = rank[rank['Gender'] == gender]['Child\'s First Name']
+    first_name = df[df['Gender'] == gender]['Child\'s First Name']
 
     if gender == 'BOTH':
-        first_name = rank['Child\'s First Name']
+        first_name = df['Child\'s First Name']
 
     names = []
 
