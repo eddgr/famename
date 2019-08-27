@@ -31,8 +31,8 @@ app.layout = html.Div([
         nameOutput=[],
         selectedName=[]
     ),
-    dcc.Graph(id='output_graph', style={'display': 'none'}),
-    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True)
+    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True),
+    dcc.Graph(id='output_graph', style={'display': 'none'})
 ])
 
 # callbacks
@@ -58,10 +58,15 @@ def select_gender(gender):
 # hide graph on load
 @app.callback(
     Output('output_graph', 'style'),
-    [Input('react', 'selectedName')]
+    [
+        Input('react', 'selectedName'),
+        Input('compare_dropdown', 'value')
+    ]
 )
-def show_graph(name):
-    if len(name) > 0:
+def show_graph(name, multi_name):
+    joined_names = name + multi_name
+
+    if len(joined_names) > 0:
         return {
             'display': 'block'
         }
@@ -73,16 +78,19 @@ def show_graph(name):
 @app.callback(
     Output('output_graph', 'figure'),
     [
-    Input('compare_dropdown', 'value')]
+        Input('react', 'selectedName'),
+        Input('compare_dropdown', 'value')
+    ]
 )
-def selected_name_graph(name):
+def selected_name_graph(name, multi_name):
     # go through an array of names
     # for each name that match, append to a new list
     # for that list, create a new scatter trace to be added to data
 
-    traces = []
+    joined_names = name + multi_name
 
-    for n in name:
+    traces = []
+    for n in joined_names:
         selected_name = df[df['Child\'s First Name'].str.upper() == n]
 
         # groups name counts by year
@@ -104,7 +112,7 @@ def selected_name_graph(name):
 
     figure = {
         'data': traces,
-        'layout': go.Layout(title=', '.join(name))
+        'layout': go.Layout(title=' vs '.join(joined_names))
     }
     return figure
 # end callbacks

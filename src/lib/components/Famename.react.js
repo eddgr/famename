@@ -16,7 +16,7 @@ import Rank from './components/Rank';
  */
 export default class Famename extends Component {
     render() {
-        const {id, setProps, nameOutput} = this.props;
+        const {id, setProps, nameOutput, selectedName} = this.props;
 
         console.log('Main Props', this.props);
         return (
@@ -30,6 +30,7 @@ export default class Famename extends Component {
                                 <GenderSelectContainer
                                     setProps={setProps}
                                     nameOutput={nameOutput}
+                                    selectedName={selectedName}
                                 />
                             )}
                             exact
