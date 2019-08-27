@@ -76,4 +76,8 @@ Famename.propTypes = {
      * List of names based on gender selected by user.
      */
     nameOutput: PropTypes.array,
+    /**
+     * Shows current user page.
+     */
+    currentPage: PropTypes.string,
 };

@@ -7,7 +7,8 @@ export default function Rank(props) {
     const {setProps} = props;
     useEffect(() => {
         setProps({
-            selectedName: '',
+            selectedName: [],
+            currentPage: 'Rank',
         });
     }, []);
     return <div>Hi from Rank</div>;

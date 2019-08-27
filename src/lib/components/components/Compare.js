@@ -9,6 +9,7 @@ export default function Compare(props) {
     useEffect(() => {
         setProps({
             selectedName: [],
+            currentPage: 'Compare',
         });
     }, []);
 
