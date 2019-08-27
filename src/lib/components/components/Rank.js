@@ -13,6 +13,8 @@ export default function Rank(props) {
     return <div>Hi from Rank</div>;
 }
 
+Rank.defaultProps = {};
+
 Rank.propTypes = {
     /**
      * Default setProps

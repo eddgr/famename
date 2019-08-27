@@ -66,18 +66,14 @@ def select_gender(gender):
 def show_graph(name, multi_name):
     # checks to see if mult_name exists
     names_list = []
-    if multi_name:
-        names_list = name  + multi_name
-    else:
+    if name:
         names_list = name
+    else:
+        names_list = multi_name
 
     if len(names_list) > 0:
-        return {
-            'display': 'block'
-        }
-    return {
-        'display': 'none'
-    }
+        return {'display': 'block'}
+    return {'display': 'none'}
 
 # show graph and trend of name
 @app.callback(
@@ -90,10 +86,10 @@ def show_graph(name, multi_name):
 def selected_name_graph(name, multi_name):
     # checks to see if mult_name exists
     joined_names = []
-    if multi_name:
-        joined_names = name + multi_name
-    else:
+    if name:
         joined_names = name
+    else:
+        joined_names = multi_name
 
     traces = []
     for n in joined_names:

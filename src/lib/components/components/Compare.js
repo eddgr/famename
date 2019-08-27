@@ -5,13 +5,17 @@ import PropTypes from 'prop-types';
  */
 export default function Compare(props) {
     const {setProps} = props;
+
     useEffect(() => {
         setProps({
-            selectedName: '',
+            selectedName: [],
         });
     }, []);
+
     return <div>Hi from Compare</div>;
 }
+
+Compare.defaultProps = {};
 
 Compare.propTypes = {
     /**
