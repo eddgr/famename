@@ -1,4 +1,4 @@
-# import
+# IMPORT
 import famename
 import dash
 from dash.dependencies import Input, Output
@@ -10,15 +10,15 @@ import pdb
 import random
 import datetime
 
-# data
+# DATA
 df = pd.read_csv('./data/Popular_Baby_Names.csv')
 # pdb.set_trace()
 
-# app
+# APP
 app = dash.Dash(__name__)
 app.title = 'Fame Name'
 
-# layout
+# LAYOUT
 options = []
 first_name = df['Child\'s First Name']
 for name in first_name:
@@ -35,7 +35,7 @@ app.layout = html.Div([
     dcc.Graph(id='output_graph', style={'display': 'none'})
 ])
 
-# callbacks
+# CALLBACKS
 # select gender
 @app.callback(
     Output('react', 'nameOutput'),
@@ -64,8 +64,8 @@ def select_gender(gender):
     ]
 )
 def show_graph(name, multi_name):
+    # checks to see if mult_name exists
     names_list = []
-
     if multi_name:
         names_list = name  + multi_name
     else:
@@ -88,11 +88,8 @@ def show_graph(name, multi_name):
     ]
 )
 def selected_name_graph(name, multi_name):
-    # go through an array of names
-    # for each name that match, append to a new list
-    # for that list, create a new scatter trace to be added to data
+    # checks to see if mult_name exists
     joined_names = []
-
     if multi_name:
         joined_names = name + multi_name
     else:
@@ -124,7 +121,7 @@ def selected_name_graph(name, multi_name):
         'layout': go.Layout(title=' vs '.join(joined_names))
     }
     return figure
-# end callbacks
+# end CALLBACKS
 
 # server
 if __name__ == '__main__':
