@@ -11,7 +11,8 @@ import random
 import datetime
 
 # DATA
-df = pd.read_csv('./data/Popular_Baby_Names.csv')
+df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
+# df = pd.read_csv('./data/Popular_Baby_Names.csv')
 # pdb.set_trace()
 
 # APP
