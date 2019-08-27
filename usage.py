@@ -19,14 +19,20 @@ app = dash.Dash(__name__)
 app.title = 'Fame Name'
 
 # layout
+options = []
+first_name = df['Child\'s First Name']
+for name in first_name:
+    options.append({'label': name.capitalize(), 'value': name.upper()})
+
 app.layout = html.Div([
     famename.Famename(
         id='react',
         genderSelect='',
         nameOutput=[],
-        selectedName='',
+        selectedName=''
     ),
-    dcc.Graph(id='output_graph', style={'display': 'none'})
+    dcc.Graph(id='output_graph', style={'display': 'none'}),
+    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True)
 ])
 
 # callbacks
@@ -42,9 +48,8 @@ def select_gender(gender):
         first_name = df['Child\'s First Name']
 
     names = []
-
     for name in first_name:
-        names.append(name.lower())
+        names.append(name.capitalize())
 
     sorted_names = sorted(set(names))
 
@@ -70,6 +75,10 @@ def show_graph(name):
     [Input('react', 'selectedName')]
 )
 def selected_name_graph(name):
+    # go through an array of names
+    # for each name that match, append to a new list
+    # for that list, create a new scatter trace to be added to data
+
     selected_name = df[df['Child\'s First Name'].str.upper() == name]
 
     # groups name counts by year
