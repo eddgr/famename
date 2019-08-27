@@ -34,8 +34,14 @@ export default class Famename extends Component {
                             )}
                             exact
                         />
-                        <Route path="/compare" component={Compare} />
-                        <Route path="/rank" component={Rank} />
+                        <Route
+                            path="/compare"
+                            render={() => <Compare setProps={setProps} />}
+                        />
+                        <Route
+                            path="/rank"
+                            render={() => <Rank setProps={setProps} />}
+                        />
                     </Switch>
                 </div>
             </BrowserRouter>

@@ -26,7 +26,7 @@ app.layout = html.Div([
         nameOutput=[],
         selectedName='',
     ),
-    dcc.Graph(id='output_graph')
+    dcc.Graph(id='output_graph', style={'display': 'none'})
 ])
 
 # callbacks

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
  */
 export default function NavBar() {
     return (
-        <div>
+        <div style={{position: 'fixed', bottom: '0'}}>
             <Link to="/">Home</Link>
             <Link to="/compare">Compare</Link>
             <Link to="/rank">Rank</Link>
