@@ -64,9 +64,14 @@ def select_gender(gender):
     ]
 )
 def show_graph(name, multi_name):
-    joined_names = name + multi_name
+    names_list = []
 
-    if len(joined_names) > 0:
+    if multi_name:
+        names_list = name  + multi_name
+    else:
+        names_list = name
+
+    if len(names_list) > 0:
         return {
             'display': 'block'
         }
@@ -86,8 +91,12 @@ def selected_name_graph(name, multi_name):
     # go through an array of names
     # for each name that match, append to a new list
     # for that list, create a new scatter trace to be added to data
+    joined_names = []
 
-    joined_names = name + multi_name
+    if multi_name:
+        joined_names = name + multi_name
+    else:
+        joined_names = name
 
     traces = []
     for n in joined_names:

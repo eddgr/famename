@@ -19,7 +19,7 @@ export default function GenderSelectContainer(props) {
                     key={index}
                     onClick={() =>
                         setProps({
-                            selectedName: [...selectedName, name.toUpperCase()],
+                            selectedName: [name.toUpperCase()],
                         })
                     }
                 >
