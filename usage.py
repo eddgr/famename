@@ -1,3 +1,12 @@
+# NOTES
+# dff = df[df['Rank'] < 6]
+# dff['Child\'s First Name'] = dff['Child\'s First Name'].str.upper()
+# incorporate gender or ethnicity filters (?)
+# rank5_names = dff.groupby('Child\'s First Name')['Count'].sum()
+# rank5_names.sort_values(ascending=False)
+# dff[dff['Gender'] == gender] + .groupby
+# dff[dff['Ethnicity'] == ethnicity] + .groupby
+
 # IMPORT
 import famename
 import dash
@@ -9,11 +18,12 @@ import pandas as pd
 import pdb
 import random
 import datetime
+# import dash_table
 
 # DATA
 df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
 # df = pd.read_csv('./data/Popular_Baby_Names.csv')
-# pdb.set_trace()
+pdb.set_trace()
 
 # APP
 app = dash.Dash(__name__)
@@ -25,6 +35,8 @@ first_name = df['Child\'s First Name']
 for name in first_name:
     options.append({'label': name.capitalize(), 'value': name.upper()})
 
+# PAGE_SIZE = 5
+
 app.layout = html.Div([
     famename.Famename(
         id='react',
@@ -34,10 +46,24 @@ app.layout = html.Div([
         currentPage=''
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
-    dcc.Graph(id='output_graph', style={'display': 'none'})
+    dcc.Graph(id='output_graph', style={'display': 'none'}),
+    # dash_table.DataTable(id='rank_table',columns=[
+    #     {"name": i, "id": i} for i in sorted(df.columns)
+    # ],
+    # page_current=0,
+    # page_size=PAGE_SIZE,
+    # page_action='custom')
 ])
 
 # CALLBACKS
+# @app.callback(
+#     Output('rank_table', 'data'),
+#     [Input('rank_table', "page_current"),
+#      Input('rank_table', "page_size")])
+# def update_table(page_current,page_size):
+#     return df.iloc[
+#         page_current*page_size:(page_current+ 1)*page_size
+#     ].to_dict('records')
 # resets graph on current page
 @app.callback(
     Output('compare_dropdown', 'value'),
