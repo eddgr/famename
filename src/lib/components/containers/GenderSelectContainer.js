@@ -30,7 +30,10 @@ export default function GenderSelectContainer(props) {
     };
 
     useEffect(() => {
-        setProps({currentPage: 'GenderSelectContainer'});
+        setProps({
+            currentPage: 'GenderSelectContainer',
+            nameOutput: [],
+        });
     }, []);
 
     console.log('GenderSelectContainer props', props);
