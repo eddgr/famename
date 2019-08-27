@@ -10,7 +10,7 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 }
 
 \usage{
-famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL)
+famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL, currentPage=NULL)
 }
 
 \arguments{
@@ -21,4 +21,6 @@ famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL)
 \item{selectedName}{Unnamed list. Name selected by user to display trend graph.}
 
 \item{nameOutput}{Unnamed list. List of names based on gender selected by user.}
+
+\item{currentPage}{Character. Shows current user page.}
 }

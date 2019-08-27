@@ -29,13 +29,23 @@ app.layout = html.Div([
         id='react',
         genderSelect='',
         nameOutput=[],
-        selectedName=[]
+        selectedName=[],
+        currentPage=''
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True),
     dcc.Graph(id='output_graph', style={'display': 'none'})
 ])
 
 # CALLBACKS
+# check current page
+@app.callback(
+    Output('compare_dropdown', 'value'),
+    [Input('react', 'currentPage')]
+)
+def set_page(page_name):
+    if page_name == 'GenderSelectContainer':
+        return []
+
 # select gender
 @app.callback(
     Output('react', 'nameOutput'),
