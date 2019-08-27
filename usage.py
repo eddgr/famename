@@ -72,7 +72,8 @@ def show_graph(name):
 # show graph and trend of name
 @app.callback(
     Output('output_graph', 'figure'),
-    [Input('react', 'selectedName')]
+    [
+    Input('compare_dropdown', 'value')]
 )
 def selected_name_graph(name):
     # go through an array of names
@@ -96,6 +97,7 @@ def selected_name_graph(name):
             go.Scatter(dict(
                 x = new_year,
                 y = group_by_year,
+                name = n.capitalize(),
                 mode = 'lines+markers'
             ))
         )
