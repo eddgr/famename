@@ -14,7 +14,7 @@ which is editable by the user.
 Keyword arguments:
 - id (string; optional): The ID used to identify this component in Dash callbacks.
 - genderSelect (string; optional): Selects gender based on user's selection.
-- selectedName (string; optional): Name selected by user to display trend graph.
+- selectedName (list; optional): Name selected by user to display trend graph.
 - nameOutput (list; optional): List of names based on gender selected by user."""
     @_explicitize_args
     def __init__(self, id=Component.UNDEFINED, genderSelect=Component.UNDEFINED, selectedName=Component.UNDEFINED, nameOutput=Component.UNDEFINED, **kwargs):

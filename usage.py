@@ -29,7 +29,7 @@ app.layout = html.Div([
         id='react',
         genderSelect='',
         nameOutput=[],
-        selectedName=''
+        selectedName=[]
     ),
     dcc.Graph(id='output_graph', style={'display': 'none'}),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True)
@@ -61,7 +61,7 @@ def select_gender(gender):
     [Input('react', 'selectedName')]
 )
 def show_graph(name):
-    if name != '':
+    if len(name) > 0:
         return {
             'display': 'block'
         }
@@ -79,25 +79,30 @@ def selected_name_graph(name):
     # for each name that match, append to a new list
     # for that list, create a new scatter trace to be added to data
 
-    selected_name = df[df['Child\'s First Name'].str.upper() == name]
+    traces = []
 
-    # groups name counts by year
-    group_by_year = selected_name.groupby('Year of Birth')['Count'].sum()
+    for n in name:
+        selected_name = df[df['Child\'s First Name'].str.upper() == n]
 
-    # convert string into datetime
-    new_year = []
-    for year in group_by_year.keys():
-        new_year.append(datetime.datetime(year=year, month=1, day=1))
+        # groups name counts by year
+        group_by_year = selected_name.groupby('Year of Birth')['Count'].sum()
 
-    figure = {
-        'data': [
+        # convert string into datetime
+        new_year = []
+        for year in group_by_year.keys():
+            new_year.append(datetime.datetime(year=year, month=1, day=1))
+
+        traces.append(
             go.Scatter(dict(
                 x = new_year,
                 y = group_by_year,
                 mode = 'lines+markers'
             ))
-        ],
-        'layout': go.Layout(title=name)
+        )
+
+    figure = {
+        'data': traces,
+        'layout': go.Layout(title=', '.join(name))
     }
     return figure
 # end callbacks
