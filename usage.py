@@ -9,17 +9,18 @@ import pandas as pd
 import pdb
 import random
 import datetime
+import dash_table
 
 # DATA
 df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
 # df = pd.read_csv('./data/Popular_Baby_Names.csv')
-# pdb.set_trace()
 
 # APP
 app = dash.Dash(__name__)
 app.title = 'Fame Name'
 
 # LAYOUT
+# dropdown name rendering
 options = []
 first_name = df['Child\'s First Name']
 for name in first_name:
@@ -31,13 +32,86 @@ app.layout = html.Div([
         genderSelect='',
         nameOutput=[],
         selectedName=[],
-        currentPage=''
+        currentPage='',
+        gender='ALL',
+        ethnicity='ALL'
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
-    dcc.Graph(id='output_graph', style={'display': 'none'})
+    dcc.Graph(id='output_graph', style={'display': 'none'}),
+    html.Div(
+        id='rank_table_container',
+        children=[
+            dash_table.DataTable(
+                id='rank_table',
+                columns=[
+                    {"name": 'Name', "id": 'Name'},
+                    {"name": 'Count', "id": 'Count'},
+                    # {"name": i, "id": i} for i in sorted(dfff.columns)
+                ],
+                page_current=0,
+                page_size=5,
+                page_action='custom',
+                sort_action='custom',
+                sort_mode='single',
+                sort_by=[]
+            )
+        ],
+        style={'display': 'none'}
+    )
+
 ])
 
 # CALLBACKS
+# datatable
+@app.callback(
+    Output('rank_table', 'data'),
+    [
+        Input('rank_table', "page_current"),
+        Input('rank_table', "page_size"),
+        Input('rank_table', "sort_by"),
+        Input('react', "gender"),
+        Input('react', "ethnicity"),
+    ]
+)
+def update_table(page_current, page_size, sort_by, gender, ethnicity):
+    # dataframe for datatable
+    df_rank5 = df[df['Rank'] < 6]
+    df_rank5['Child\'s First Name'] = df_rank5['Child\'s First Name'].str.upper()
+    df_rank5['index'] = range(1, len(df_rank5) + 1)
+
+    df_gender = df_rank5[df_rank5['Gender'] == gender]
+    df_ethnicity = df_rank5[df_rank5['Ethnicity'] == ethnicity]
+
+    if gender != 'ALL' and ethnicity != 'ALL':
+        # if both gender and ethnicity are toggled
+        rank5_names = df_gender[df_gender['Ethnicity'] == ethnicity].groupby('Child\'s First Name')['Count'].sum()
+    elif gender != 'ALL':
+        # only gender toggled
+        rank5_names = df_gender.groupby('Child\'s First Name')['Count'].sum()
+    elif ethnicity != 'ALL':
+        # only ethnicity toggled
+        rank5_names = df_ethnicity.groupby('Child\'s First Name')['Count'].sum()
+    else:
+        # default all on gender and ethnicity
+        rank5_names = df_rank5.groupby('Child\'s First Name')['Count'].sum()
+
+    sorted_rank5 = rank5_names.sort_values(ascending=False)
+    dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
+
+    if len(sort_by):
+        dffff = dfff.sort_values(
+            sort_by[0]['column_id'],
+            ascending=sort_by[0]['direction'] == 'asc',
+            inplace=False
+        )
+    else:
+        # No sort is applied
+        dffff = dfff
+
+    return dffff.iloc[
+        page_current*page_size:(page_current+ 1)*page_size
+    ].to_dict('records')
+
 # resets graph on current page
 @app.callback(
     Output('compare_dropdown', 'value'),
@@ -46,13 +120,23 @@ app.layout = html.Div([
 def set_page(page_name):
     return []
 
-# hide dropdown
+# hide compare_dropdown
 @app.callback(
     Output('compare_dropdown', 'style'),
     [Input('react', 'currentPage')]
 )
 def hide_dropdown(page_name):
     if page_name == 'GenderSelectContainer' or page_name == 'Rank':
+        return {'display': 'none'}
+    return {'display': 'block'}
+
+# hide rank_table_container
+@app.callback(
+    Output('rank_table_container', 'style'),
+    [Input('react', 'currentPage')]
+)
+def hide_dropdown(page_name):
+    if page_name == 'GenderSelectContainer' or page_name == 'Compare':
         return {'display': 'none'}
     return {'display': 'block'}
 

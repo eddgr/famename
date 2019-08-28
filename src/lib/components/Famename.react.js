@@ -15,8 +15,15 @@ import Rank from './components/Rank';
  * which is editable by the user.
  */
 export default class Famename extends Component {
+    constructor() {
+        super();
+        this.state = {
+            rank: {},
+        };
+    }
+
     render() {
-        const {id, setProps, nameOutput} = this.props;
+        const {id, setProps, nameOutput, gender, ethnicity} = this.props;
 
         console.log('Main Props', this.props);
         return (
@@ -40,7 +47,13 @@ export default class Famename extends Component {
                         />
                         <Route
                             path="/rank"
-                            render={() => <Rank setProps={setProps} />}
+                            render={() => (
+                                <Rank
+                                    setProps={setProps}
+                                    gender={gender}
+                                    ethnicity={ethnicity}
+                                />
+                            )}
                         />
                     </Switch>
                 </div>
@@ -76,8 +89,18 @@ Famename.propTypes = {
      * List of names based on gender selected by user.
      */
     nameOutput: PropTypes.array,
+
     /**
      * Shows current user page.
      */
     currentPage: PropTypes.string,
+
+    /**
+     * Filter rank datatable by gender.
+     */
+    gender: PropTypes.string,
+    /**
+     * Filter rank datatable by ethnicity.
+     */
+    ethnicity: PropTypes.string,
 };

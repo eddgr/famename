@@ -10,7 +10,8 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 }
 
 \usage{
-famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL, currentPage=NULL)
+famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL,
+currentPage=NULL, gender=NULL, ethnicity=NULL)
 }
 
 \arguments{
@@ -23,4 +24,8 @@ famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL, current
 \item{nameOutput}{Unnamed list. List of names based on gender selected by user.}
 
 \item{currentPage}{Character. Shows current user page.}
+
+\item{gender}{Character. Filter rank datatable by gender.}
+
+\item{ethnicity}{Character. Filter rank datatable by ethnicity.}
 }
