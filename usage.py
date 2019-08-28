@@ -18,12 +18,22 @@ import pandas as pd
 import pdb
 import random
 import datetime
-# import dash_table
+import dash_table
 
 # DATA
 df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
 # df = pd.read_csv('./data/Popular_Baby_Names.csv')
-pdb.set_trace()
+
+dff = df[df['Rank'] < 6]
+dff['Child\'s First Name'] = dff['Child\'s First Name'].str.upper()
+dff['index'] = range(1, len(dff) + 1)
+# incorporate gender or ethnicity filters (?)
+rank5_names = dff.groupby('Child\'s First Name')['Count'].sum()
+sorted_rank5 = rank5_names.sort_values(ascending=False)
+
+# dff[dff['Gender'] == gender] + .groupby
+# dff[dff['Ethnicity'] == ethnicity] + .groupby
+# pdb.set_trace()
 
 # APP
 app = dash.Dash(__name__)
@@ -43,10 +53,29 @@ app.layout = html.Div([
         genderSelect='',
         nameOutput=[],
         selectedName=[],
-        currentPage=''
+        currentPage='',
+        # rank5_names=sorted_rank5.keys()[0:5],
+        # rank5_count=sorted_rank5[0:5]
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
     dcc.Graph(id='output_graph', style={'display': 'none'}),
+    dash_table.DataTable(
+        id='rank_table',
+        columns=[
+            {'name': 'Name', 'id': 'Name'},
+            {'name': 'Count', 'id': 'Count'}
+        ],
+        data=pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()}).to_dict('records')
+    )
+
+# pd.DataFrame({'name': sorted_rank5.keys().to_list(), 'count': sorted_rank5.to_list()})
+#      pd.DataFrame(data=sorted_rank5.keys().to_list(), columns=['Name']) + pd.DataFrame(data=sorted_rank5.to_list(), columns=['Count'])
+     # pd.DataFrame(data=[sorted_rank5.keys().to_list(), data=sorted_rank5.to_list()], columns=['Name', 'Count'])
+     # pd.concat([pd.DataFrame(data=sorted_rank5.keys().to_list(), columns=['Name']), pd.DataFrame(data=sorted_rank5.to_list(), columns=['Count'])])
+
+# pd.concat([pd.DataFrame(data=sorted_rank5.keys().to_list(), columns=['Name']), pd.DataFrame(data=sorted_rank
+# 5.to_list(), columns=['Count'])]).to_dict('records')
+
     # dash_table.DataTable(id='rank_table',columns=[
     #     {"name": i, "id": i} for i in sorted(df.columns)
     # ],

@@ -15,6 +15,13 @@ import Rank from './components/Rank';
  * which is editable by the user.
  */
 export default class Famename extends Component {
+    constructor() {
+        super();
+        this.state = {
+            rank: {},
+        };
+    }
+
     render() {
         const {id, setProps, nameOutput} = this.props;
 
@@ -76,8 +83,12 @@ Famename.propTypes = {
      * List of names based on gender selected by user.
      */
     nameOutput: PropTypes.array,
+
     /**
      * Shows current user page.
      */
     currentPage: PropTypes.string,
+
+    // rank5_names: PropTypes.array,
+    // rank5_count: PropTypes.array,
 };
