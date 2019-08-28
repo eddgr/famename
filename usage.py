@@ -15,18 +15,6 @@ import dash_table
 df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
 # df = pd.read_csv('./data/Popular_Baby_Names.csv')
 
-# secondary dataframe
-dff = df[df['Rank'] < 6]
-dff['Child\'s First Name'] = dff['Child\'s First Name'].str.upper()
-dff['index'] = range(1, len(dff) + 1)
-# incorporate gender or ethnicity filters (?)
-rank5_names = dff.groupby('Child\'s First Name')['Count'].sum()
-sorted_rank5 = rank5_names.sort_values(ascending=False)
-dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
-# dff[dff['Gender'] == gender] + .groupby
-# dff[dff['Ethnicity'] == ethnicity] + .groupby
-# pdb.set_trace()
-
 # APP
 app = dash.Dash(__name__)
 app.title = 'Fame Name'
@@ -45,6 +33,8 @@ app.layout = html.Div([
         nameOutput=[],
         selectedName=[],
         currentPage='',
+        gender='ALL',
+        ethnicity='ALL'
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
     dcc.Graph(id='output_graph', style={'display': 'none'}),
@@ -79,9 +69,35 @@ app.layout = html.Div([
         Input('rank_table', "page_current"),
         Input('rank_table', "page_size"),
         Input('rank_table', "sort_by"),
+        Input('react', "gender"),
+        Input('react', "ethnicity"),
     ]
 )
-def update_table(page_current,page_size,sort_by):
+def update_table(page_current, page_size, sort_by, gender, ethnicity):
+    # dataframe for datatable
+    df_rank5 = df[df['Rank'] < 6]
+    df_rank5['Child\'s First Name'] = df_rank5['Child\'s First Name'].str.upper()
+    df_rank5['index'] = range(1, len(df_rank5) + 1)
+
+    df_gender = df_rank5[df_rank5['Gender'] == gender]
+    df_ethnicity = df_rank5[df_rank5['Ethnicity'] == ethnicity]
+
+    if gender != 'ALL' and ethnicity != 'ALL':
+        # if both gender and ethnicity are toggled
+        rank5_names = df_gender[df_gender['Ethnicity'] == ethnicity].groupby('Child\'s First Name')['Count'].sum()
+    elif gender != 'ALL':
+        # only gender toggled
+        rank5_names = df_gender.groupby('Child\'s First Name')['Count'].sum()
+    elif ethnicity != 'ALL':
+        # only ethnicity toggled
+        rank5_names = df_ethnicity.groupby('Child\'s First Name')['Count'].sum()
+    else:
+        # default all on gender and ethnicity
+        rank5_names = df_rank5.groupby('Child\'s First Name')['Count'].sum()
+
+    sorted_rank5 = rank5_names.sort_values(ascending=False)
+    dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
+
     if len(sort_by):
         dffff = dfff.sort_values(
             sort_by[0]['column_id'],

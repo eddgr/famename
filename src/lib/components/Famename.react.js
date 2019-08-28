@@ -23,7 +23,7 @@ export default class Famename extends Component {
     }
 
     render() {
-        const {id, setProps, nameOutput} = this.props;
+        const {id, setProps, nameOutput, gender, ethnicity} = this.props;
 
         console.log('Main Props', this.props);
         return (
@@ -47,7 +47,13 @@ export default class Famename extends Component {
                         />
                         <Route
                             path="/rank"
-                            render={() => <Rank setProps={setProps} />}
+                            render={() => (
+                                <Rank
+                                    setProps={setProps}
+                                    gender={gender}
+                                    ethnicity={ethnicity}
+                                />
+                            )}
                         />
                     </Switch>
                 </div>
@@ -89,6 +95,12 @@ Famename.propTypes = {
      */
     currentPage: PropTypes.string,
 
-    // rank5_names: PropTypes.array,
-    // rank5_count: PropTypes.array,
+    /**
+     * Filter rank datatable by gender.
+     */
+    gender: PropTypes.string,
+    /**
+     * Filter rank datatable by ethnicity.
+     */
+    ethnicity: PropTypes.string,
 };

@@ -11,7 +11,7 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 
 \usage{
 famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL,
-currentPage=NULL, rank5_names=NULL, rank5_count=NULL)
+currentPage=NULL, gender=NULL, ethnicity=NULL)
 }
 
 \arguments{
@@ -25,7 +25,7 @@ currentPage=NULL, rank5_names=NULL, rank5_count=NULL)
 
 \item{currentPage}{Character. Shows current user page.}
 
-\item{rank5_names}{Unnamed list. }
+\item{gender}{Character. Filter rank datatable by gender.}
 
-\item{rank5_count}{Unnamed list. }
+\item{ethnicity}{Character. Filter rank datatable by ethnicity.}
 }
