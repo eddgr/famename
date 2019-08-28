@@ -1,12 +1,3 @@
-# NOTES
-# dff = df[df['Rank'] < 6]
-# dff['Child\'s First Name'] = dff['Child\'s First Name'].str.upper()
-# incorporate gender or ethnicity filters (?)
-# rank5_names = dff.groupby('Child\'s First Name')['Count'].sum()
-# rank5_names.sort_values(ascending=False)
-# dff[dff['Gender'] == gender] + .groupby
-# dff[dff['Ethnicity'] == ethnicity] + .groupby
-
 # IMPORT
 import famename
 import dash
@@ -31,6 +22,7 @@ dff['index'] = range(1, len(dff) + 1)
 rank5_names = dff.groupby('Child\'s First Name')['Count'].sum()
 sorted_rank5 = rank5_names.sort_values(ascending=False)
 
+dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
 # dff[dff['Gender'] == gender] + .groupby
 # dff[dff['Ethnicity'] == ethnicity] + .groupby
 # pdb.set_trace()
@@ -45,7 +37,7 @@ first_name = df['Child\'s First Name']
 for name in first_name:
     options.append({'label': name.capitalize(), 'value': name.upper()})
 
-# PAGE_SIZE = 5
+PAGE_SIZE = 5
 
 app.layout = html.Div([
     famename.Famename(
@@ -54,45 +46,54 @@ app.layout = html.Div([
         nameOutput=[],
         selectedName=[],
         currentPage='',
-        # rank5_names=sorted_rank5.keys()[0:5],
-        # rank5_count=sorted_rank5[0:5]
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
     dcc.Graph(id='output_graph', style={'display': 'none'}),
+    # dash_table.DataTable(
+    #     id='rank_table',
+    #     columns=[
+    #         {'name': 'Name', 'id': 'Name'},
+    #         {'name': 'Count', 'id': 'Count'}
+    #     ],
+    #     data=pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()}).to_dict('records')
+    # )
     dash_table.DataTable(
         id='rank_table',
         columns=[
-            {'name': 'Name', 'id': 'Name'},
-            {'name': 'Count', 'id': 'Count'}
+            {"name": i, "id": i} for i in sorted(dfff.columns)
         ],
-        data=pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()}).to_dict('records')
+        page_current=0,
+        page_size=PAGE_SIZE,
+        page_action='custom',
+        sort_action='custom',
+        sort_mode='single',
+        sort_by=[]
     )
-
-# pd.DataFrame({'name': sorted_rank5.keys().to_list(), 'count': sorted_rank5.to_list()})
-#      pd.DataFrame(data=sorted_rank5.keys().to_list(), columns=['Name']) + pd.DataFrame(data=sorted_rank5.to_list(), columns=['Count'])
-     # pd.DataFrame(data=[sorted_rank5.keys().to_list(), data=sorted_rank5.to_list()], columns=['Name', 'Count'])
-     # pd.concat([pd.DataFrame(data=sorted_rank5.keys().to_list(), columns=['Name']), pd.DataFrame(data=sorted_rank5.to_list(), columns=['Count'])])
-
-# pd.concat([pd.DataFrame(data=sorted_rank5.keys().to_list(), columns=['Name']), pd.DataFrame(data=sorted_rank
-# 5.to_list(), columns=['Count'])]).to_dict('records')
-
-    # dash_table.DataTable(id='rank_table',columns=[
-    #     {"name": i, "id": i} for i in sorted(df.columns)
-    # ],
-    # page_current=0,
-    # page_size=PAGE_SIZE,
-    # page_action='custom')
 ])
 
 # CALLBACKS
-# @app.callback(
-#     Output('rank_table', 'data'),
-#     [Input('rank_table', "page_current"),
-#      Input('rank_table', "page_size")])
-# def update_table(page_current,page_size):
-#     return df.iloc[
-#         page_current*page_size:(page_current+ 1)*page_size
-#     ].to_dict('records')
+@app.callback(
+    Output('rank_table', 'data'),
+    [
+        Input('rank_table', "page_current"),
+        Input('rank_table', "page_size"),
+        Input('rank_table', "sort_by"),
+    ]
+)
+def update_table(page_current,page_size,sort_by):
+    if len(sort_by):
+        dffff = dfff.sort_values(
+            sort_by[0]['column_id'],
+            ascending=sort_by[0]['direction'] == 'asc',
+            inplace=False
+        )
+    else:
+        # No sort is applied
+        dffff = dfff
+
+    return dffff.iloc[
+        page_current*page_size:(page_current+ 1)*page_size
+    ].to_dict('records')
 # resets graph on current page
 @app.callback(
     Output('compare_dropdown', 'value'),
