@@ -16,7 +16,21 @@ df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
 # df = pd.read_csv('./data/Popular_Baby_Names.csv')
 
 # APP
-app = dash.Dash(__name__)
+external_stylesheets = [
+    {
+        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+        'rel': 'stylesheet',
+        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
+        'crossorigin': 'anonymous'
+    }
+]
+
+meta_tags = [{
+    'name': 'viewport',
+    'content': 'width=device-width, initial-scale=1.0'
+}]
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, meta_tags=meta_tags)
 app.title = 'Fame Name'
 
 # LAYOUT
@@ -36,7 +50,7 @@ app.layout = html.Div([
         gender='ALL',
         ethnicity='ALL'
     ),
-    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
+    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container"),
     dcc.Graph(id='output_graph', style={'display': 'none'}),
     html.Div(
         id='rank_table_container',
@@ -56,7 +70,8 @@ app.layout = html.Div([
                 sort_by=[]
             )
         ],
-        style={'display': 'none'}
+        style={'display': 'none'},
+        className="container"
     )
 
 ])
@@ -75,12 +90,13 @@ app.layout = html.Div([
 )
 def update_table(page_current, page_size, sort_by, gender, ethnicity):
     # dataframe for datatable
-    df_rank5 = df[df['Rank'] < 6]
-    df_rank5['Child\'s First Name'] = df_rank5['Child\'s First Name'].str.upper()
-    df_rank5['index'] = range(1, len(df_rank5) + 1)
+    # df = df
+    # df = df[df['Rank'] < 6]
+    df['Child\'s First Name'] = df['Child\'s First Name'].str.capitalize()
+    df['index'] = range(1, len(df) + 1)
 
-    df_gender = df_rank5[df_rank5['Gender'] == gender]
-    df_ethnicity = df_rank5[df_rank5['Ethnicity'] == ethnicity]
+    df_gender = df[df['Gender'] == gender]
+    df_ethnicity = df[df['Ethnicity'] == ethnicity]
 
     if gender != 'ALL' and ethnicity != 'ALL':
         # if both gender and ethnicity are toggled
@@ -93,7 +109,7 @@ def update_table(page_current, page_size, sort_by, gender, ethnicity):
         rank5_names = df_ethnicity.groupby('Child\'s First Name')['Count'].sum()
     else:
         # default all on gender and ethnicity
-        rank5_names = df_rank5.groupby('Child\'s First Name')['Count'].sum()
+        rank5_names = df.groupby('Child\'s First Name')['Count'].sum()
 
     sorted_rank5 = rank5_names.sort_values(ascending=False)
     dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
@@ -218,11 +234,11 @@ def selected_name_graph(name, multi_name):
 
     figure = {
         'data': traces,
-        'layout': go.Layout(title=' vs '.join(joined_names))
+        'layout': go.Layout(title=' vs '.join(n.capitalize() for n in joined_names))
     }
     return figure
 # end CALLBACKS
 
 # server
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(dev_tools_hot_reload=True)

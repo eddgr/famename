@@ -15,7 +15,8 @@ export default function GenderSelectContainer(props) {
     const renderNames = () => {
         return nameOutput.map((name, index) => {
             return (
-                <li
+                <button
+                    className="btn"
                     key={index}
                     onClick={() =>
                         setProps({
@@ -24,7 +25,7 @@ export default function GenderSelectContainer(props) {
                     }
                 >
                     {name}
-                </li>
+                </button>
             );
         });
     };
@@ -41,11 +42,24 @@ export default function GenderSelectContainer(props) {
         <div>
             <div>
                 Select a gender: <br />
-                <button onClick={() => handleGenderButton('MALE')}>Male</button>
-                <button onClick={() => handleGenderButton('FEMALE')}>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => handleGenderButton('MALE')}
+                >
+                    Male
+                </button>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => handleGenderButton('FEMALE')}
+                >
                     Female
                 </button>
-                <button onClick={() => handleGenderButton('BOTH')}>Both</button>
+                <button
+                    className="btn btn-warning"
+                    onClick={() => handleGenderButton('BOTH')}
+                >
+                    Both
+                </button>
             </div>
             <div>{renderNames()}</div>
         </div>

@@ -28,8 +28,8 @@ export default class Famename extends Component {
         console.log('Main Props', this.props);
         return (
             <BrowserRouter>
-                <div id={id}>
-                    <NavBar />
+                <NavBar />
+                <div id={id} className="container">
                     <Switch>
                         <Route
                             path="/"
