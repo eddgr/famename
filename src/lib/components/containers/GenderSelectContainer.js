@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
  * Allows users to select a gender to return a list of random names.
  */
 export default function GenderSelectContainer(props) {
-    const {setProps, nameOutput} = props;
+    const {setProps} = props;
     const handleGenderButton = gender => {
         setProps({
             genderSelect: gender,
@@ -76,5 +76,5 @@ GenderSelectContainer.propTypes = {
     /**
      * List of names that are passed down as props.
      */
-    nameOutput: PropTypes.array,
+    // nameOutput: PropTypes.array,
 };

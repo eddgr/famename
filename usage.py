@@ -46,7 +46,9 @@ for name in first_name:
 
 app.layout = html.Div([
     html.H2(id='page_title', children='Fame Name', className='text-center mt-4'),
-    dcc.Graph(id='output_graph', style={'display': 'flex'}, className="justify-content-center align-items-center"),
+    html.Div([
+        dcc.Graph(id='output_graph', style={'display': 'flex'}, className="justify-content-center align-items-center"),
+    ], className='container'),
     html.Div(
         id='rank_table_container',
         children=[
@@ -72,7 +74,7 @@ app.layout = html.Div([
         id='react',
         genderSelect='',
         nameOutput=[],
-        selectedName=[],
+        # selectedName=[],
         currentPage='',
         gender='ALL',
         ethnicity='ALL'
@@ -255,7 +257,7 @@ def selected_name_graph(name, multi_name):
 
     figure = {
         'data': traces,
-        'layout': go.Layout(title=' vs '.join(n.capitalize() for n in joined_names))
+        'layout': go.Layout(title=' vs '.join(n.capitalize() for n in joined_names), legend_orientation="h", margin=dict(l=30, r=0))
     }
     return figure
 # end CALLBACKS

@@ -87,7 +87,7 @@ Famename.propTypes = {
     /**
      * Name selected by user to display trend graph.
      */
-    selectedName: PropTypes.array,
+    // selectedName: PropTypes.array,
 
     /**
      * List of names based on gender selected by user.

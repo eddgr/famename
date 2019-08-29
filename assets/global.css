@@ -15,6 +15,11 @@ h6 {
     font-family: 'Fredoka One', cursive !important;
 }
 
+/* Dash */
+
+.modebar {
+    display: none;
+}
 ._dash-loading {
     display: flex;
     height: 100vh;
