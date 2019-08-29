@@ -29,7 +29,7 @@ export default class Famename extends Component {
         return (
             <BrowserRouter>
                 <NavBar />
-                <div id={id} className="container">
+                <div id={id} className="container mt-4">
                     <Switch>
                         <Route
                             path="/"

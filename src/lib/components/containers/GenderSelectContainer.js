@@ -41,25 +41,27 @@ export default function GenderSelectContainer(props) {
     return (
         <>
             <div className="row justify-content-center align-items-center">
-                Select a gender: <br />
-                <button
-                    className="btn btn-primary"
-                    onClick={() => handleGenderButton('MALE')}
-                >
-                    Male
-                </button>
-                <button
-                    className="btn btn-danger"
-                    onClick={() => handleGenderButton('FEMALE')}
-                >
-                    Female
-                </button>
-                <button
-                    className="btn btn-warning"
-                    onClick={() => handleGenderButton('BOTH')}
-                >
-                    Both
-                </button>
+                <div>Select a gender:</div>
+                <div>
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => handleGenderButton('MALE')}
+                    >
+                        Male
+                    </button>
+                    <button
+                        className="btn btn-danger"
+                        onClick={() => handleGenderButton('FEMALE')}
+                    >
+                        Female
+                    </button>
+                    <button
+                        className="btn btn-warning"
+                        onClick={() => handleGenderButton('BOTH')}
+                    >
+                        Both
+                    </button>
+                </div>
             </div>
             <div className="row justify-content-center align-items-center">
                 {renderNames()}

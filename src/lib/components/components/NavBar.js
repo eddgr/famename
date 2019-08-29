@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 /**
  * This is where the NavBar lives
@@ -7,23 +7,36 @@ import {Link} from 'react-router-dom';
 export default function NavBar() {
     return (
         <ul
-            className="nav fixed-bottom bg-light row justify-content-center align-items-center text-center"
+            className="nav nav-pills fixed-bottom bg-light row justify-content-center align-items-center text-center"
             style={{height: '50px'}}
         >
             <li className="nav-item col-4">
-                <Link to="/" className="nav-link">
+                <NavLink
+                    exact={true}
+                    to="/"
+                    activeClassName="active"
+                    className="nav-link"
+                >
                     Home
-                </Link>
+                </NavLink>
             </li>
             <li className="nav-item col-4">
-                <Link to="/compare" className="nav-link">
+                <NavLink
+                    to="/compare"
+                    activeClassName="active"
+                    className="nav-link"
+                >
                     Compare
-                </Link>
+                </NavLink>
             </li>
             <li className="nav-item col-4">
-                <Link to="/rank" className="nav-link">
+                <NavLink
+                    to="/rank"
+                    activeClassName="active"
+                    className="nav-link"
+                >
                     Rank
-                </Link>
+                </NavLink>
             </li>
         </ul>
     );
