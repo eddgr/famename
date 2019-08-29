@@ -94,7 +94,8 @@ app.layout = html.Div([
     [Input('react', 'currentPage')]
 )
 def set_title(title):
-    return title[0:9] # wip
+    if title != 'GenderSelectContainer':
+        return title
 
 # datatable
 @app.callback(
