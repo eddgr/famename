@@ -22,6 +22,10 @@ external_stylesheets = [
         'rel': 'stylesheet',
         'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
         'crossorigin': 'anonymous'
+    },
+    {
+        'href': 'https://fonts.googleapis.com/css?family=Fredoka+One|Raleway&display=swap',
+        'rel': 'stylesheet'
     }
 ]
 
