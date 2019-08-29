@@ -96,6 +96,7 @@ app.layout = html.Div([
 def set_title(title):
     if title != 'GenderSelectContainer':
         return title
+    return 'Fame Name'
 
 # datatable
 @app.callback(
