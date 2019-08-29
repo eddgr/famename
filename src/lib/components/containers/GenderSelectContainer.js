@@ -57,9 +57,9 @@ export default function GenderSelectContainer(props) {
                     </button>
                     <button
                         className="btn btn-warning"
-                        onClick={() => handleGenderButton('BOTH')}
+                        onClick={() => handleGenderButton('RANDOM')}
                     >
-                        Both
+                        Random
                     </button>
                 </div>
             </div>

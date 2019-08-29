@@ -45,17 +45,7 @@ for name in first_name:
     options.append({'label': name.capitalize(), 'value': name.upper()})
 
 app.layout = html.Div([
-    famename.Famename(
-        id='react',
-        genderSelect='',
-        nameOutput=[],
-        selectedName=[],
-        currentPage='',
-        gender='ALL',
-        ethnicity='ALL'
-    ),
-    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container"),
-    dcc.Graph(id='output_graph', style={'display': 'none'}, className="justify-content-center align-items-center"),
+    dcc.Graph(id='output_graph', style={'display': 'flex'}, className="justify-content-center align-items-center"),
     html.Div(
         id='rank_table_container',
         children=[
@@ -75,8 +65,18 @@ app.layout = html.Div([
             )
         ],
         style={'display': 'none'},
-        className="container"
-    )
+        className="container mt-4"
+    ),
+    famename.Famename(
+        id='react',
+        genderSelect='',
+        nameOutput=[],
+        selectedName=[],
+        currentPage='',
+        gender='ALL',
+        ethnicity='ALL'
+    ),
+    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container")
 
 ])
 
@@ -168,7 +168,7 @@ def hide_dropdown(page_name):
 def select_gender(gender):
     first_name = df[df['Gender'] == gender]['Child\'s First Name']
 
-    if gender == 'BOTH':
+    if gender == 'RANDOM':
         first_name = df['Child\'s First Name']
 
     names = []
@@ -186,21 +186,25 @@ def select_gender(gender):
 @app.callback(
     Output('output_graph', 'style'),
     [
-        Input('react', 'selectedName'),
-        Input('compare_dropdown', 'value')
+        Input('react', 'currentPage')
+        # Input('react', 'selectedName'),
+        # Input('compare_dropdown', 'value')
     ]
 )
-def show_graph(name, multi_name):
+def show_graph(page):
+    if page == 'Rank':
+        return {'display': 'none'}
+# def show_graph(name, multi_name):
     # checks to see if mult_name exists
-    names_list = []
-    if name:
-        names_list = name
-    else:
-        names_list = multi_name
-
-    if len(names_list) > 0:
-        return {'display': 'flex'}
-    return {'display': 'none'}
+    # names_list = []
+    # if name:
+    #     names_list = name
+    # else:
+    #     names_list = multi_name
+    #
+    # if len(names_list) > 0:
+    #     return {'display': 'flex'}
+    # return {'display': 'flex'}
 
 # show graph and trend of name
 @app.callback(
