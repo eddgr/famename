@@ -2,6 +2,10 @@
     font-family: 'Raleway', sans-serif !important;
 }
 
+i {
+    font-family: 'Font Awesome 5 Free' !important;
+}
+
 body {
     margin-bottom: 50px; /* to account for fixed bottom nav */
 }

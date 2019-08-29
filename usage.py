@@ -26,6 +26,10 @@ external_stylesheets = [
     {
         'href': 'https://fonts.googleapis.com/css?family=Fredoka+One|Raleway&display=swap',
         'rel': 'stylesheet'
+    },
+    {
+        'href': 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css',
+        'rel': 'stylesheet'
     }
 ]
 

@@ -17,7 +17,7 @@ export default function NavBar() {
                     activeClassName="active"
                     className="nav-link"
                 >
-                    Home
+                    <i className="fas fa-home"></i>
                 </NavLink>
             </li>
             <li className="nav-item col-4">
@@ -26,7 +26,7 @@ export default function NavBar() {
                     activeClassName="active"
                     className="nav-link"
                 >
-                    Compare
+                    <i className="fas fa-search"></i>
                 </NavLink>
             </li>
             <li className="nav-item col-4">
@@ -35,7 +35,7 @@ export default function NavBar() {
                     activeClassName="active"
                     className="nav-link"
                 >
-                    Rank
+                    <i className="fas fa-fire"></i>
                 </NavLink>
             </li>
         </ul>
