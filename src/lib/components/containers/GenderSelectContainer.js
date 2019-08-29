@@ -16,7 +16,7 @@ export default function GenderSelectContainer(props) {
         return nameOutput.map((name, index) => {
             return (
                 <button
-                    className="btn"
+                    className="btn m-2"
                     key={index}
                     onClick={() =>
                         setProps({
@@ -39,8 +39,8 @@ export default function GenderSelectContainer(props) {
 
     console.log('GenderSelectContainer props', props);
     return (
-        <div>
-            <div>
+        <>
+            <div className="row justify-content-center align-items-center">
                 Select a gender: <br />
                 <button
                     className="btn btn-primary"
@@ -61,8 +61,10 @@ export default function GenderSelectContainer(props) {
                     Both
                 </button>
             </div>
-            <div>{renderNames()}</div>
-        </div>
+            <div className="row justify-content-center align-items-center">
+                {renderNames()}
+            </div>
+        </>
     );
 }
 

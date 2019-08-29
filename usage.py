@@ -51,7 +51,7 @@ app.layout = html.Div([
         ethnicity='ALL'
     ),
     dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container"),
-    dcc.Graph(id='output_graph', style={'display': 'none'}),
+    dcc.Graph(id='output_graph', style={'display': 'none'}, className="justify-content-center align-items-center"),
     html.Div(
         id='rank_table_container',
         children=[
@@ -60,7 +60,7 @@ app.layout = html.Div([
                 columns=[
                     {"name": 'Name', "id": 'Name'},
                     {"name": 'Count', "id": 'Count'},
-                    # {"name": i, "id": i} for i in sorted(dfff.columns)
+                    # {"name": i, "id": i} for i in sorted(dff.columns)
                 ],
                 page_current=0,
                 page_size=5,
@@ -112,19 +112,19 @@ def update_table(page_current, page_size, sort_by, gender, ethnicity):
         rank5_names = df.groupby('Child\'s First Name')['Count'].sum()
 
     sorted_rank5 = rank5_names.sort_values(ascending=False)
-    dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
+    dff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
 
     if len(sort_by):
-        dffff = dfff.sort_values(
+        dfff = dff.sort_values(
             sort_by[0]['column_id'],
             ascending=sort_by[0]['direction'] == 'asc',
             inplace=False
         )
     else:
         # No sort is applied
-        dffff = dfff
+        dfff = dff
 
-    return dffff.iloc[
+    return dfff.iloc[
         page_current*page_size:(page_current+ 1)*page_size
     ].to_dict('records')
 
@@ -173,6 +173,9 @@ def select_gender(gender):
 
     sorted_names = sorted(set(names))
 
+    # if gender has not been selected, return empty list to pass to react
+    if gender == '':
+        return []
     return random.sample(sorted_names, k=5)
 
 # hide graph on load
@@ -192,7 +195,7 @@ def show_graph(name, multi_name):
         names_list = multi_name
 
     if len(names_list) > 0:
-        return {'display': 'block'}
+        return {'display': 'flex'}
     return {'display': 'none'}
 
 # show graph and trend of name
@@ -241,4 +244,4 @@ def selected_name_graph(name, multi_name):
 
 # server
 if __name__ == '__main__':
-    app.run_server(dev_tools_hot_reload=True)
+    app.run_server(debug=True, dev_tools_hot_reload=True)
