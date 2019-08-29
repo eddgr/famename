@@ -12,23 +12,23 @@ export default function GenderSelectContainer(props) {
         });
     };
 
-    const renderNames = () => {
-        return nameOutput.map((name, index) => {
-            return (
-                <button
-                    className="btn m-2"
-                    key={index}
-                    onClick={() =>
-                        setProps({
-                            selectedName: [name.toUpperCase()],
-                        })
-                    }
-                >
-                    {name}
-                </button>
-            );
-        });
-    };
+    // const renderNames = () => {
+    //     return nameOutput.map((name, index) => {
+    //         return (
+    //             <button
+    //                 className="btn m-2"
+    //                 key={index}
+    //                 onClick={() =>
+    //                     setProps({
+    //                         selectedName: [name.toUpperCase()],
+    //                     })
+    //                 }
+    //             >
+    //                 {name}
+    //             </button>
+    //         );
+    //     });
+    // };
 
     useEffect(() => {
         setProps({
@@ -39,34 +39,29 @@ export default function GenderSelectContainer(props) {
 
     console.log('GenderSelectContainer props', props);
     return (
-        <>
-            <div className="row justify-content-center align-items-center">
-                <div>Select a gender:</div>
-                <div>
-                    <button
-                        className="btn btn-primary"
-                        onClick={() => handleGenderButton('MALE')}
-                    >
-                        Male
-                    </button>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => handleGenderButton('FEMALE')}
-                    >
-                        Female
-                    </button>
-                    <button
-                        className="btn btn-warning"
-                        onClick={() => handleGenderButton('RANDOM')}
-                    >
-                        Random
-                    </button>
-                </div>
+        <div className="row justify-content-center align-items-center">
+            <div>Select a gender:</div>
+            <div>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => handleGenderButton('MALE')}
+                >
+                    Male
+                </button>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => handleGenderButton('FEMALE')}
+                >
+                    Female
+                </button>
+                <button
+                    className="btn btn-warning"
+                    onClick={() => handleGenderButton('RANDOM')}
+                >
+                    Random
+                </button>
             </div>
-            <div className="row justify-content-center align-items-center">
-                {renderNames()}
-            </div>
-        </>
+        </div>
     );
 }
 

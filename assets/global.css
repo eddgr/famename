@@ -2,6 +2,10 @@
     font-family: 'Raleway', sans-serif !important;
 }
 
+body {
+    margin-bottom: 50px; /* to account for fixed bottom nav */
+}
+
 h1,
 h2,
 h3,

@@ -45,6 +45,7 @@ for name in first_name:
     options.append({'label': name.capitalize(), 'value': name.upper()})
 
 app.layout = html.Div([
+    html.H2(id='page_title', children='Fame Name', className='text-center mt-4'),
     dcc.Graph(id='output_graph', style={'display': 'flex'}, className="justify-content-center align-items-center"),
     html.Div(
         id='rank_table_container',
@@ -81,6 +82,14 @@ app.layout = html.Div([
 ])
 
 # CALLBACKS
+# setting page title header
+@app.callback(
+    Output('page_title', 'children'),
+    [Input('react', 'currentPage')]
+)
+def set_title(title):
+    return title[0:9] # wip
+
 # datatable
 @app.callback(
     Output('rank_table', 'data'),
@@ -173,14 +182,14 @@ def select_gender(gender):
 
     names = []
     for name in first_name:
-        names.append(name.capitalize())
+        names.append(name.upper())
 
     sorted_names = sorted(set(names))
 
     # if gender has not been selected, return empty list to pass to react
     if gender == '':
         return []
-    return random.sample(sorted_names, k=5)
+    return random.sample(sorted_names, k=1)
 
 # hide graph on load
 @app.callback(
@@ -210,7 +219,8 @@ def show_graph(page):
 @app.callback(
     Output('output_graph', 'figure'),
     [
-        Input('react', 'selectedName'),
+        Input('react', 'nameOutput'),
+        # Input('react', 'selectedName'),
         Input('compare_dropdown', 'value')
     ]
 )
