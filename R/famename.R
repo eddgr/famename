@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-famename <- function(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL, currentPage=NULL, gender=NULL, ethnicity=NULL) {
+famename <- function(id=NULL, genderSelect=NULL, nameOutput=NULL, currentPage=NULL, gender=NULL, ethnicity=NULL) {
     
-    props <- list(id=id, genderSelect=genderSelect, selectedName=selectedName, nameOutput=nameOutput, currentPage=currentPage, gender=gender, ethnicity=ethnicity)
+    props <- list(id=id, genderSelect=genderSelect, nameOutput=nameOutput, currentPage=currentPage, gender=gender, ethnicity=ethnicity)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ famename <- function(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=N
         props = props,
         type = 'Famename',
         namespace = 'famename',
-        propNames = c('id', 'genderSelect', 'selectedName', 'nameOutput', 'currentPage', 'gender', 'ethnicity'),
+        propNames = c('id', 'genderSelect', 'nameOutput', 'currentPage', 'gender', 'ethnicity'),
         package = 'famename'
         )
 

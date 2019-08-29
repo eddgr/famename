@@ -16,7 +16,25 @@ df = pd.read_csv('http://data.cityofnewyork.us/api/views/25th-nujf/rows.csv')
 # df = pd.read_csv('./data/Popular_Baby_Names.csv')
 
 # APP
-app = dash.Dash(__name__)
+external_stylesheets = [
+    {
+        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+        'rel': 'stylesheet',
+        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
+        'crossorigin': 'anonymous'
+    },
+    {
+        'href': 'https://fonts.googleapis.com/css?family=Fredoka+One|Raleway&display=swap',
+        'rel': 'stylesheet'
+    }
+]
+
+meta_tags = [{
+    'name': 'viewport',
+    'content': 'width=device-width, initial-scale=1.0'
+}]
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, meta_tags=meta_tags)
 app.title = 'Fame Name'
 
 # LAYOUT
@@ -27,17 +45,10 @@ for name in first_name:
     options.append({'label': name.capitalize(), 'value': name.upper()})
 
 app.layout = html.Div([
-    famename.Famename(
-        id='react',
-        genderSelect='',
-        nameOutput=[],
-        selectedName=[],
-        currentPage='',
-        gender='ALL',
-        ethnicity='ALL'
-    ),
-    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}),
-    dcc.Graph(id='output_graph', style={'display': 'none'}),
+    html.H2(id='page_title', children='Fame Name', className='text-center mt-4'),
+    html.Div([
+        dcc.Graph(id='output_graph', style={'display': 'flex'}, className="justify-content-center align-items-center"),
+    ], className='container'),
     html.Div(
         id='rank_table_container',
         children=[
@@ -46,7 +57,7 @@ app.layout = html.Div([
                 columns=[
                     {"name": 'Name', "id": 'Name'},
                     {"name": 'Count', "id": 'Count'},
-                    # {"name": i, "id": i} for i in sorted(dfff.columns)
+                    # {"name": i, "id": i} for i in sorted(dff.columns)
                 ],
                 page_current=0,
                 page_size=5,
@@ -56,12 +67,31 @@ app.layout = html.Div([
                 sort_by=[]
             )
         ],
-        style={'display': 'none'}
-    )
+        style={'display': 'none'},
+        className="container mt-4"
+    ),
+    famename.Famename(
+        id='react',
+        genderSelect='',
+        nameOutput=[],
+        # selectedName=[],
+        currentPage='',
+        gender='ALL',
+        ethnicity='ALL'
+    ),
+    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container")
 
 ])
 
 # CALLBACKS
+# setting page title header
+@app.callback(
+    Output('page_title', 'children'),
+    [Input('react', 'currentPage')]
+)
+def set_title(title):
+    return title[0:9] # wip
+
 # datatable
 @app.callback(
     Output('rank_table', 'data'),
@@ -75,12 +105,13 @@ app.layout = html.Div([
 )
 def update_table(page_current, page_size, sort_by, gender, ethnicity):
     # dataframe for datatable
-    df_rank5 = df[df['Rank'] < 6]
-    df_rank5['Child\'s First Name'] = df_rank5['Child\'s First Name'].str.upper()
-    df_rank5['index'] = range(1, len(df_rank5) + 1)
+    # df = df
+    # df = df[df['Rank'] < 6]
+    df['Child\'s First Name'] = df['Child\'s First Name'].str.capitalize()
+    df['index'] = range(1, len(df) + 1)
 
-    df_gender = df_rank5[df_rank5['Gender'] == gender]
-    df_ethnicity = df_rank5[df_rank5['Ethnicity'] == ethnicity]
+    df_gender = df[df['Gender'] == gender]
+    df_ethnicity = df[df['Ethnicity'] == ethnicity]
 
     if gender != 'ALL' and ethnicity != 'ALL':
         # if both gender and ethnicity are toggled
@@ -93,22 +124,22 @@ def update_table(page_current, page_size, sort_by, gender, ethnicity):
         rank5_names = df_ethnicity.groupby('Child\'s First Name')['Count'].sum()
     else:
         # default all on gender and ethnicity
-        rank5_names = df_rank5.groupby('Child\'s First Name')['Count'].sum()
+        rank5_names = df.groupby('Child\'s First Name')['Count'].sum()
 
     sorted_rank5 = rank5_names.sort_values(ascending=False)
-    dfff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
+    dff = pd.DataFrame({'Name': sorted_rank5.keys().to_list(), 'Count': sorted_rank5.to_list()})
 
     if len(sort_by):
-        dffff = dfff.sort_values(
+        dfff = dff.sort_values(
             sort_by[0]['column_id'],
             ascending=sort_by[0]['direction'] == 'asc',
             inplace=False
         )
     else:
         # No sort is applied
-        dffff = dfff
+        dfff = dff
 
-    return dffff.iloc[
+    return dfff.iloc[
         page_current*page_size:(page_current+ 1)*page_size
     ].to_dict('records')
 
@@ -148,42 +179,50 @@ def hide_dropdown(page_name):
 def select_gender(gender):
     first_name = df[df['Gender'] == gender]['Child\'s First Name']
 
-    if gender == 'BOTH':
+    if gender == 'RANDOM':
         first_name = df['Child\'s First Name']
 
     names = []
     for name in first_name:
-        names.append(name.capitalize())
+        names.append(name.upper())
 
     sorted_names = sorted(set(names))
 
-    return random.sample(sorted_names, k=5)
+    # if gender has not been selected, return empty list to pass to react
+    if gender == '':
+        return []
+    return random.sample(sorted_names, k=1)
 
 # hide graph on load
 @app.callback(
     Output('output_graph', 'style'),
     [
-        Input('react', 'selectedName'),
-        Input('compare_dropdown', 'value')
+        Input('react', 'currentPage')
+        # Input('react', 'selectedName'),
+        # Input('compare_dropdown', 'value')
     ]
 )
-def show_graph(name, multi_name):
+def show_graph(page):
+    if page == 'Rank':
+        return {'display': 'none'}
+# def show_graph(name, multi_name):
     # checks to see if mult_name exists
-    names_list = []
-    if name:
-        names_list = name
-    else:
-        names_list = multi_name
-
-    if len(names_list) > 0:
-        return {'display': 'block'}
-    return {'display': 'none'}
+    # names_list = []
+    # if name:
+    #     names_list = name
+    # else:
+    #     names_list = multi_name
+    #
+    # if len(names_list) > 0:
+    #     return {'display': 'flex'}
+    # return {'display': 'flex'}
 
 # show graph and trend of name
 @app.callback(
     Output('output_graph', 'figure'),
     [
-        Input('react', 'selectedName'),
+        Input('react', 'nameOutput'),
+        # Input('react', 'selectedName'),
         Input('compare_dropdown', 'value')
     ]
 )
@@ -218,11 +257,11 @@ def selected_name_graph(name, multi_name):
 
     figure = {
         'data': traces,
-        'layout': go.Layout(title=' vs '.join(joined_names))
+        'layout': go.Layout(title=' vs '.join(n.capitalize() for n in joined_names), legend_orientation="h", margin=dict(l=30, r=0))
     }
     return figure
 # end CALLBACKS
 
 # server
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True, dev_tools_hot_reload=True)

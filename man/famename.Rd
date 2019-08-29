@@ -10,16 +10,14 @@ ExampleComponent is an example component. It takes a property, `label`, and disp
 }
 
 \usage{
-famename(id=NULL, genderSelect=NULL, selectedName=NULL, nameOutput=NULL,
-currentPage=NULL, gender=NULL, ethnicity=NULL)
+famename(id=NULL, genderSelect=NULL, nameOutput=NULL, currentPage=NULL, gender=NULL,
+ethnicity=NULL)
 }
 
 \arguments{
 \item{id}{Character. The ID used to identify this component in Dash callbacks.}
 
 \item{genderSelect}{Character. Selects gender based on user's selection.}
-
-\item{selectedName}{Unnamed list. Name selected by user to display trend graph.}
 
 \item{nameOutput}{Unnamed list. List of names based on gender selected by user.}
 

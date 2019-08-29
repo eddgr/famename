@@ -5,29 +5,30 @@ import PropTypes from 'prop-types';
  * Allows users to select a gender to return a list of random names.
  */
 export default function GenderSelectContainer(props) {
-    const {setProps, nameOutput} = props;
+    const {setProps} = props;
     const handleGenderButton = gender => {
         setProps({
             genderSelect: gender,
         });
     };
 
-    const renderNames = () => {
-        return nameOutput.map((name, index) => {
-            return (
-                <li
-                    key={index}
-                    onClick={() =>
-                        setProps({
-                            selectedName: [name.toUpperCase()],
-                        })
-                    }
-                >
-                    {name}
-                </li>
-            );
-        });
-    };
+    // const renderNames = () => {
+    //     return nameOutput.map((name, index) => {
+    //         return (
+    //             <button
+    //                 className="btn m-2"
+    //                 key={index}
+    //                 onClick={() =>
+    //                     setProps({
+    //                         selectedName: [name.toUpperCase()],
+    //                     })
+    //                 }
+    //             >
+    //                 {name}
+    //             </button>
+    //         );
+    //     });
+    // };
 
     useEffect(() => {
         setProps({
@@ -38,16 +39,28 @@ export default function GenderSelectContainer(props) {
 
     console.log('GenderSelectContainer props', props);
     return (
-        <div>
+        <div className="row justify-content-center align-items-center">
+            <div>Select a gender:</div>
             <div>
-                Select a gender: <br />
-                <button onClick={() => handleGenderButton('MALE')}>Male</button>
-                <button onClick={() => handleGenderButton('FEMALE')}>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => handleGenderButton('MALE')}
+                >
+                    Male
+                </button>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => handleGenderButton('FEMALE')}
+                >
                     Female
                 </button>
-                <button onClick={() => handleGenderButton('BOTH')}>Both</button>
+                <button
+                    className="btn btn-warning"
+                    onClick={() => handleGenderButton('RANDOM')}
+                >
+                    Random
+                </button>
             </div>
-            <div>{renderNames()}</div>
         </div>
     );
 }
@@ -63,5 +76,5 @@ GenderSelectContainer.propTypes = {
     /**
      * List of names that are passed down as props.
      */
-    nameOutput: PropTypes.array,
+    // nameOutput: PropTypes.array,
 };

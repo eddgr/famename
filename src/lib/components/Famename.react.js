@@ -28,8 +28,12 @@ export default class Famename extends Component {
         console.log('Main Props', this.props);
         return (
             <BrowserRouter>
-                <div id={id}>
-                    <NavBar />
+                <NavBar />
+                <div
+                    id={id}
+                    className="container mt-4"
+                    style={{bottom: '50px'}}
+                >
                     <Switch>
                         <Route
                             path="/"
@@ -83,7 +87,7 @@ Famename.propTypes = {
     /**
      * Name selected by user to display trend graph.
      */
-    selectedName: PropTypes.array,
+    // selectedName: PropTypes.array,
 
     /**
      * List of names based on gender selected by user.
