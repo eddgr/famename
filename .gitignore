@@ -1,6 +1,8 @@
 # Edgar's references
 misc/
 .DS_Store
+*.pyc
+.env
 
 # Created by .ignore support plugin (hsz.mobi)
 ### VisualStudioCode template

@@ -40,6 +40,7 @@ meta_tags = [{
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, meta_tags=meta_tags)
 app.title = 'Fame Name'
+server = app.server
 
 # LAYOUT
 # dropdown name rendering
