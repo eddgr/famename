@@ -30,3 +30,27 @@ h6 {
     justify-content: center;
     align-items: center;
 }
+
+.gtitle {
+    font-family: 'Fredoka One', cursive !important;
+    font-size: 1.5rem !important;
+}
+
+#rank_table {
+    text-align: center;
+}
+.previous-page {
+    margin-right: 0.5rem;
+}
+.previous-page,
+.next-page {
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+    color: #17a2b8;
+    background-color: transparent;
+    background-image: none;
+    border-color: #17a2b8;
+}

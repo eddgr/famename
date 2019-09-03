@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 /**
@@ -6,29 +6,14 @@ import PropTypes from 'prop-types';
  */
 export default function GenderSelectContainer(props) {
     const {setProps} = props;
+    const [selectGender, setSelectGender] = useState('');
+
     const handleGenderButton = gender => {
+        setSelectGender(gender);
         setProps({
             genderSelect: gender,
         });
     };
-
-    // const renderNames = () => {
-    //     return nameOutput.map((name, index) => {
-    //         return (
-    //             <button
-    //                 className="btn m-2"
-    //                 key={index}
-    //                 onClick={() =>
-    //                     setProps({
-    //                         selectedName: [name.toUpperCase()],
-    //                     })
-    //                 }
-    //             >
-    //                 {name}
-    //             </button>
-    //         );
-    //     });
-    // };
 
     useEffect(() => {
         setProps({
@@ -39,27 +24,41 @@ export default function GenderSelectContainer(props) {
 
     console.log('GenderSelectContainer props', props);
     return (
-        <div className="row justify-content-center align-items-center">
-            <div>Select a gender:</div>
+        <div className="row justify-content-center align-items-center flex-column">
             <div>
                 <button
-                    className="btn btn-primary"
+                    className={
+                        selectGender === 'MALE'
+                            ? 'btn btn-primary mr-2'
+                            : 'btn btn-outline-primary mr-2'
+                    }
                     onClick={() => handleGenderButton('MALE')}
                 >
                     Male
                 </button>
                 <button
-                    className="btn btn-danger"
+                    className={
+                        selectGender === 'FEMALE'
+                            ? 'btn btn-danger mr-2'
+                            : 'btn btn-outline-danger mr-2'
+                    }
                     onClick={() => handleGenderButton('FEMALE')}
                 >
                     Female
                 </button>
                 <button
-                    className="btn btn-warning"
-                    onClick={() => handleGenderButton('RANDOM')}
+                    className={
+                        selectGender === 'ALL'
+                            ? 'btn btn-warning'
+                            : 'btn btn-outline-warning'
+                    }
+                    onClick={() => handleGenderButton('ALL')}
                 >
-                    Random
+                    All
                 </button>
+            </div>
+            <div className="mt-2">
+                <em>Press again for a new name.</em>
             </div>
         </div>
     );
@@ -72,9 +71,4 @@ GenderSelectContainer.propTypes = {
      * Default setProps.
      */
     setProps: PropTypes.func,
-
-    /**
-     * List of names that are passed down as props.
-     */
-    // nameOutput: PropTypes.array,
 };

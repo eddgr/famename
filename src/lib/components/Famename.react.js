@@ -85,11 +85,6 @@ Famename.propTypes = {
     genderSelect: PropTypes.string,
 
     /**
-     * Name selected by user to display trend graph.
-     */
-    // selectedName: PropTypes.array,
-
-    /**
      * List of names based on gender selected by user.
      */
     nameOutput: PropTypes.array,
@@ -103,6 +98,7 @@ Famename.propTypes = {
      * Filter rank datatable by gender.
      */
     gender: PropTypes.string,
+
     /**
      * Filter rank datatable by ethnicity.
      */
