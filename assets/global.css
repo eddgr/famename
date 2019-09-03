@@ -19,6 +19,11 @@ h6 {
     font-family: 'Fredoka One', cursive !important;
 }
 
+/* bootstrap */
+.btn-sm {
+    border: solid 1px;
+}
+
 /* Dash */
 
 .modebar {
