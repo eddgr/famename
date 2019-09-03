@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+
 /**
  * This will be used for searching and comparing names
  */
@@ -13,7 +14,7 @@ export default function Compare(props) {
         });
     }, []);
 
-    return <div>Hi from Compare</div>;
+    return null;
 }
 
 Compare.defaultProps = {};

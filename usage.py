@@ -24,7 +24,7 @@ external_stylesheets = [
         'crossorigin': 'anonymous'
     },
     {
-        'href': 'https://fonts.googleapis.com/css?family=Fredoka+One|Raleway&display=swap',
+        'href': 'https://fonts.googleapis.com/css?family=Fredoka+One|Raleway:400,700&display=swap',
         'rel': 'stylesheet'
     },
     {
@@ -50,6 +50,16 @@ for name in first_name:
 
 app.layout = html.Div([
     html.H2(id='page_title', children='Fame Name', className='text-center mt-4'),
+    famename.Famename(
+        id='react',
+        genderSelect='',
+        nameOutput=[],
+        # selectedName=[],
+        currentPage='',
+        gender='ALL',
+        ethnicity='ALL'
+    ),
+    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container"),
     html.Div([
         dcc.Graph(id='output_graph', style={'display': 'flex'}, className="justify-content-center align-items-center"),
     ], className='container'),
@@ -68,22 +78,24 @@ app.layout = html.Div([
                 page_action='custom',
                 sort_action='custom',
                 sort_mode='single',
-                sort_by=[]
+                sort_by=[],
+                style_cell={'textAlign': 'center'},
+                style_data_conditional=[
+                    {
+                        'if': {'row_index': 'odd'},
+                        'backgroundColor': 'rgb(248, 248, 248)'
+                    }
+                ],
+                style_header={
+                    'backgroundColor': '#17a2b8',
+                    'color': '#fff',
+                    'fontWeight': 'bold'
+                }
             )
         ],
         style={'display': 'none'},
         className="container mt-4"
-    ),
-    famename.Famename(
-        id='react',
-        genderSelect='',
-        nameOutput=[],
-        # selectedName=[],
-        currentPage='',
-        gender='ALL',
-        ethnicity='ALL'
-    ),
-    dcc.Dropdown(id='compare_dropdown', options=options, placeholder='Select names to compare...', multi=True, style={'display': 'none'}, className="container")
+    )
 
 ])
 
@@ -94,9 +106,11 @@ app.layout = html.Div([
     [Input('react', 'currentPage')]
 )
 def set_title(title):
-    if title != 'GenderSelectContainer':
-        return title
-    return 'Fame Name'
+    if title == 'GenderSelectContainer':
+        return 'Select a Gender'
+    elif title == 'Rank':
+        return 'Popular Names'
+    return title
 
 # datatable
 @app.callback(
@@ -111,8 +125,6 @@ def set_title(title):
 )
 def update_table(page_current, page_size, sort_by, gender, ethnicity):
     # dataframe for datatable
-    # df = df
-    # df = df[df['Rank'] < 6]
     df['Child\'s First Name'] = df['Child\'s First Name'].str.capitalize()
     df['index'] = range(1, len(df) + 1)
 
@@ -185,7 +197,7 @@ def hide_dropdown(page_name):
 def select_gender(gender):
     first_name = df[df['Gender'] == gender]['Child\'s First Name']
 
-    if gender == 'RANDOM':
+    if gender == 'ALL':
         first_name = df['Child\'s First Name']
 
     names = []
@@ -265,6 +277,7 @@ def selected_name_graph(name, multi_name):
         'data': traces,
         'layout': go.Layout(title=' vs '.join(n.capitalize() for n in joined_names), legend_orientation="h", margin=dict(l=30, r=0))
     }
+
     return figure
 # end CALLBACKS
 
