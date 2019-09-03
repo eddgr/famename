@@ -57,5 +57,5 @@ h6 {
     color: #17a2b8;
     background-color: transparent;
     background-image: none;
-    border-color: #17a2b8;
+    border: 1px solid #17a2b8;
 }
