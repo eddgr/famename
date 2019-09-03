@@ -10,16 +10,20 @@ export default function Rank(props) {
     const [selectEthnicity, setSelectEthnicity] = useState('ALL');
 
     const filterGender = gender => {
+        setSelectGender(gender);
         setProps({gender});
     };
 
     const filterEthnicity = ethnicity => {
+        setSelectEthnicity(ethnicity);
         setProps({ethnicity});
     };
     useEffect(() => {
         setProps({
             selectedName: [],
             currentPage: 'Rank',
+            gender: 'ALL',
+            ethnicity: 'ALL',
         });
     }, []);
     return (
@@ -34,10 +38,7 @@ export default function Rank(props) {
                             ? 'btn btn-primary mr-2'
                             : 'btn btn-outline-primary mr-2'
                     }
-                    onClick={() => {
-                        setSelectGender('MALE');
-                        filterGender('MALE');
-                    }}
+                    onClick={() => filterGender('MALE')}
                 >
                     Male
                 </button>
@@ -48,10 +49,7 @@ export default function Rank(props) {
                             ? 'btn btn-danger mr-2'
                             : 'btn btn-outline-danger mr-2'
                     }
-                    onClick={() => {
-                        setSelectGender('FEMALE');
-                        filterGender('FEMALE');
-                    }}
+                    onClick={() => filterGender('FEMALE')}
                 >
                     Female
                 </button>
@@ -62,10 +60,7 @@ export default function Rank(props) {
                             ? 'btn btn-warning'
                             : 'btn btn-outline-warning'
                     }
-                    onClick={() => {
-                        setSelectGender('ALL');
-                        filterGender('ALL');
-                    }}
+                    onClick={() => filterGender('ALL')}
                 >
                     All
                 </button>
@@ -79,10 +74,7 @@ export default function Rank(props) {
                             ? 'btn-sm btn-info mr-2'
                             : 'btn-sm btn-outline-info mr-2'
                     }
-                    onClick={() => {
-                        setSelectEthnicity('WHITE NON HISPANIC');
-                        filterEthnicity('WHITE NON HISPANIC');
-                    }}
+                    onClick={() => filterEthnicity('WHITE NON HISPANIC')}
                 >
                     White
                 </button>
@@ -92,10 +84,7 @@ export default function Rank(props) {
                             ? 'btn-sm btn-info mr-2'
                             : 'btn-sm btn-outline-info mr-2'
                     }
-                    onClick={() => {
-                        setSelectEthnicity('BLACK NON HISPANIC');
-                        filterEthnicity('BLACK NON HISPANIC');
-                    }}
+                    onClick={() => filterEthnicity('BLACK NON HISPANIC')}
                 >
                     Black
                 </button>
@@ -105,10 +94,9 @@ export default function Rank(props) {
                             ? 'btn-sm btn-info mr-2'
                             : 'btn-sm btn-outline-info mr-2'
                     }
-                    onClick={() => {
-                        setSelectEthnicity('ASIAN AND PACIFIC ISLANDER');
-                        filterEthnicity('ASIAN AND PACIFIC ISLANDER');
-                    }}
+                    onClick={() =>
+                        filterEthnicity('ASIAN AND PACIFIC ISLANDER')
+                    }
                 >
                     Asian
                 </button>
@@ -118,10 +106,7 @@ export default function Rank(props) {
                             ? 'btn-sm btn-info mr-2'
                             : 'btn-sm btn-outline-info mr-2'
                     }
-                    onClick={() => {
-                        setSelectEthnicity('HISPANIC');
-                        filterEthnicity('HISPANIC');
-                    }}
+                    onClick={() => filterEthnicity('HISPANIC')}
                 >
                     Hispanic
                 </button>
@@ -133,10 +118,7 @@ export default function Rank(props) {
                             ? 'btn-sm btn-warning'
                             : 'btn-sm btn-outline-warning'
                     }
-                    onClick={() => {
-                        setSelectEthnicity('ALL');
-                        filterEthnicity('ALL');
-                    }}
+                    onClick={() => filterEthnicity('ALL')}
                 >
                     All
                 </button>

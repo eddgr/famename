@@ -283,4 +283,4 @@ def selected_name_graph(name, multi_name):
 
 # server
 if __name__ == '__main__':
-    app.run_server(debug=True, dev_tools_hot_reload=True)
+    app.run_server(debug=False, dev_tools_hot_reload=True)
