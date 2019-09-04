@@ -1,8 +1,8 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-compare <- function() {
+compare <- function(props=NULL) {
     
-    props <- list()
+    props <- list(props=props)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -10,7 +10,7 @@ compare <- function() {
         props = props,
         type = 'Compare',
         namespace = 'famename',
-        propNames = c(),
+        propNames = c('props'),
         package = 'famename'
         )
 

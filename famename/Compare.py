@@ -8,14 +8,14 @@ class Compare(Component):
 This will be used for searching and comparing names
 
 Keyword arguments:
-"""
+- props (a list of or a singular dash component, string or number; optional): Props being passed down from parent"""
     @_explicitize_args
-    def __init__(self, **kwargs):
-        self._prop_names = []
+    def __init__(self, props=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['props']
         self._type = 'Compare'
         self._namespace = 'famename'
         self._valid_wildcard_attributes =            []
-        self.available_properties = []
+        self.available_properties = ['props']
         self.available_wildcard_properties =            []
 
         _explicit_args = kwargs.pop('_explicit_args')

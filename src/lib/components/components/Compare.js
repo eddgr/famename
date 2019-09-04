@@ -15,7 +15,7 @@ export default function Compare(props) {
     }, []);
 
     console.log('Compare props', props);
-    return null;
+    return <></>;
 }
 
 Compare.defaultProps = {};

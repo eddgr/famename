@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
+
+import {renderButton} from './style';
+
 /**
  * Displays the most/least popular names
  */
@@ -32,97 +35,73 @@ export default function Rank(props) {
             <div className="mb-2">
                 Filter by Gender
                 <br />
-                <button
-                    id="MALE"
-                    className={
-                        selectGender === 'MALE'
-                            ? 'btn btn-primary mr-2'
-                            : 'btn btn-outline-primary mr-2'
-                    }
-                    onClick={() => filterGender('MALE')}
-                >
-                    Male
-                </button>
-                <button
-                    id="FEMALE"
-                    className={
-                        selectGender === 'FEMALE'
-                            ? 'btn btn-danger mr-2'
-                            : 'btn btn-outline-danger mr-2'
-                    }
-                    onClick={() => filterGender('FEMALE')}
-                >
-                    Female
-                </button>
-                <button
-                    id="ALL"
-                    className={
-                        selectGender === 'ALL'
-                            ? 'btn btn-warning'
-                            : 'btn btn-outline-warning'
-                    }
-                    onClick={() => filterGender('ALL')}
-                >
-                    All
-                </button>
+                {renderButton(
+                    selectGender,
+                    filterGender,
+                    'MALE',
+                    ['btn-primary', 'btn-outline-primary'],
+                    false
+                )}
+                {renderButton(
+                    selectGender,
+                    filterGender,
+                    'FEMALE',
+                    ['btn-danger', 'btn-outline-danger'],
+                    false
+                )}
+                {renderButton(
+                    selectGender,
+                    filterGender,
+                    'ALL',
+                    ['btn-warning', 'btn-outline-warning'],
+                    true
+                )}
             </div>
             <div className="mb-2">
                 Filter by Ethnicity
                 <br />
-                <button
-                    className={
-                        selectEthnicity === 'WHITE NON HISPANIC'
-                            ? 'btn-sm btn-info mr-2'
-                            : 'btn-sm btn-outline-info mr-2'
-                    }
-                    onClick={() => filterEthnicity('WHITE NON HISPANIC')}
-                >
-                    White
-                </button>
-                <button
-                    className={
-                        selectEthnicity === 'BLACK NON HISPANIC'
-                            ? 'btn-sm btn-info mr-2'
-                            : 'btn-sm btn-outline-info mr-2'
-                    }
-                    onClick={() => filterEthnicity('BLACK NON HISPANIC')}
-                >
-                    Black
-                </button>
-                <button
-                    className={
-                        selectEthnicity === 'ASIAN AND PACIFIC ISLANDER'
-                            ? 'btn-sm btn-info mr-2'
-                            : 'btn-sm btn-outline-info mr-2'
-                    }
-                    onClick={() =>
-                        filterEthnicity('ASIAN AND PACIFIC ISLANDER')
-                    }
-                >
-                    Asian
-                </button>
-                <button
-                    className={
-                        selectEthnicity === 'HISPANIC'
-                            ? 'btn-sm btn-info mr-2'
-                            : 'btn-sm btn-outline-info mr-2'
-                    }
-                    onClick={() => filterEthnicity('HISPANIC')}
-                >
-                    Hispanic
-                </button>
+                {renderButton(
+                    selectEthnicity,
+                    filterEthnicity,
+                    'WHITE NON HISPANIC',
+                    ['btn-info', 'btn-outline-info'],
+                    false,
+                    true
+                )}
+                {renderButton(
+                    selectEthnicity,
+                    filterEthnicity,
+                    'BLACK NON HISPANIC',
+                    ['btn-info', 'btn-outline-info'],
+                    false,
+                    true
+                )}
+                {renderButton(
+                    selectEthnicity,
+                    filterEthnicity,
+                    'ASIAN AND PACIFIC ISLANDER',
+                    ['btn-info', 'btn-outline-info'],
+                    false,
+                    true
+                )}
+                {renderButton(
+                    selectEthnicity,
+                    filterEthnicity,
+                    'HISPANIC',
+                    ['btn-info', 'btn-outline-info'],
+                    true,
+                    true
+                )}
             </div>
             <div>
-                <button
-                    className={
-                        selectEthnicity === 'ALL'
-                            ? 'btn-sm btn-warning'
-                            : 'btn-sm btn-outline-warning'
-                    }
-                    onClick={() => filterEthnicity('ALL')}
-                >
-                    All
-                </button>
+                {renderButton(
+                    selectEthnicity,
+                    filterEthnicity,
+                    'ALL',
+                    ['btn-warning', 'btn-outline-warning'],
+                    true,
+                    true
+                )}
             </div>
         </div>
     );

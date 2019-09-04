@@ -55,6 +55,27 @@
       }
     }
   },
+  "src/lib/components/components/Compare.js": {
+    "description": "This will be used for searching and comparing names",
+    "displayName": "Compare",
+    "methods": [],
+    "props": {
+      "props": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Props being passed down from parent"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Default setProps"
+      }
+    }
+  },
   "src/lib/components/components/NavBar.js": {
     "description": "This is where the NavBar lives",
     "displayName": "NavBar",
@@ -87,6 +108,55 @@
         },
         "required": false,
         "description": "Default setProps"
+      }
+    }
+  },
+  "src/lib/components/components/style.js": {
+    "description": "",
+    "displayName": "renderButton",
+    "methods": [],
+    "props": {
+      "selectState": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "handleButtonClick": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": ""
+      },
+      "genderEthnicity": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "cssArray": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "last": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "ethnicity": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
       }
     }
   },
