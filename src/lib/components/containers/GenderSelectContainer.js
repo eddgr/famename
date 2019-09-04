@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 
-import {renderButton} from '../components/style';
+import {RenderButton} from '../components/style';
 
 /**
  * Allows users to select a gender to return a list of random names.
@@ -28,27 +28,27 @@ export default function GenderSelectContainer(props) {
     return (
         <div className="row justify-content-center align-items-center flex-column">
             <div>
-                {renderButton({
-                    selectState: selectGender,
-                    handleButtonClick: handleButtonClick,
-                    genderEthnicity: 'MALE',
-                    cssArray: ['btn-primary', 'btn-outline-primary'],
-                    last: false,
-                })}
-                {renderButton({
-                    selectState: selectGender,
-                    handleButtonClick: handleButtonClick,
-                    genderEthnicity: 'FEMALE',
-                    cssArray: ['btn-danger', 'btn-outline-danger'],
-                    last: false,
-                })}
-                {renderButton({
-                    selectState: selectGender,
-                    handleButtonClick: handleButtonClick,
-                    genderEthnicity: 'ALL',
-                    cssArray: ['btn-warning', 'btn-outline-warning'],
-                    last: true,
-                })}
+                <RenderButton
+                    selectState={selectGender}
+                    handleButtonClick={handleButtonClick}
+                    genderEthnicity={'MALE'}
+                    cssArray={['btn-primary', 'btn-outline-primary']}
+                    last={false}
+                />
+                <RenderButton
+                    selectState={selectGender}
+                    handleButtonClick={handleButtonClick}
+                    genderEthnicity={'FEMALE'}
+                    cssArray={['btn-danger', 'btn-outline-danger']}
+                    last={false}
+                />
+                <RenderButton
+                    selectState={selectGender}
+                    handleButtonClick={handleButtonClick}
+                    genderEthnicity={'ALL'}
+                    cssArray={['btn-warning', 'btn-outline-warning']}
+                    last={true}
+                />
             </div>
             <div className="mt-2">
                 <em>Press again for a new name.</em>

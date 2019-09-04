@@ -1,37 +1,33 @@
 import PropTypes from 'prop-types';
 
-export const renderButton = ({
-    selectState,
-    handleButtonClick,
-    genderEthnicity,
-    cssArray,
-    last,
-    ethnicity,
-}) => {
-    const capitalizeGender = ethnicity
-        ? genderEthnicity.split(' ')[0][0] +
-          genderEthnicity
+export const RenderButton = props => {
+    const capitalizeGender = props.ethnicity
+        ? props.genderEthnicity.split(' ')[0][0] +
+          props.genderEthnicity
               .split(' ')[0]
               .slice(1)
               .toLowerCase()
-        : genderEthnicity[0] + genderEthnicity.slice(1).toLowerCase();
+        : props.genderEthnicity[0] +
+          props.genderEthnicity.slice(1).toLowerCase();
     return (
         <button
             className={
-                selectState === genderEthnicity
-                    ? `${ethnicity ? 'btn-sm' : 'btn'} ${cssArray[0]} ${!last &&
-                          'mr-2'}`
-                    : `${ethnicity ? 'btn-sm' : 'btn'} ${cssArray[1]} ${!last &&
-                          'mr-2'}`
+                props.selectState === props.genderEthnicity
+                    ? `${props.ethnicity ? 'btn-sm' : 'btn'} ${
+                          props.cssArray[0]
+                      } ${!props.last && 'mr-2'}`
+                    : `${props.ethnicity ? 'btn-sm' : 'btn'} ${
+                          props.cssArray[1]
+                      } ${!props.last && 'mr-2'}`
             }
-            onClick={() => handleButtonClick(genderEthnicity)}
+            onClick={() => props.handleButtonClick(props.genderEthnicity)}
         >
             {capitalizeGender}
         </button>
     );
 };
 
-renderButton.propTypes = {
+RenderButton.propTypes = {
     selectState: PropTypes.string,
     handleButtonClick: PropTypes.func,
     genderEthnicity: PropTypes.string,

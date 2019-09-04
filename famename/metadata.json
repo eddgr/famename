@@ -71,7 +71,7 @@
   },
   "src/lib/components/components/style.js": {
     "description": "",
-    "displayName": "renderButton",
+    "displayName": "RenderButton",
     "methods": [],
     "props": {
       "selectState": {
