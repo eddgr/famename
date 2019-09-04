@@ -3,16 +3,16 @@
 from dash.development.base_component import Component, _explicitize_args
 
 
-class GenderSelectContainer(Component):
-    """A GenderSelectContainer component.
-Allows users to select a gender to return a list of random names.
+class Rank(Component):
+    """A Rank component.
+Displays the most/least popular names
 
 Keyword arguments:
 - props (a list of or a singular dash component, string or number; optional): Props being passed down from parent"""
     @_explicitize_args
     def __init__(self, props=Component.UNDEFINED, **kwargs):
         self._prop_names = ['props']
-        self._type = 'GenderSelectContainer'
+        self._type = 'Rank'
         self._namespace = 'famename'
         self._valid_wildcard_attributes =            []
         self.available_properties = ['props']
@@ -27,4 +27,4 @@ Keyword arguments:
             if k not in args:
                 raise TypeError(
                     'Required argument `' + k + '` was not specified.')
-        super(GenderSelectContainer, self).__init__(**args)
+        super(Rank, self).__init__(**args)

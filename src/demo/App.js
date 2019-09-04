@@ -1,14 +1,13 @@
 /* eslint no-magic-numbers: 0 */
 import React, {Component} from 'react';
 
-import { Famename } from '../lib';
+import {Famename} from '../lib';
 
 class App extends Component {
-
     constructor() {
         super();
         this.state = {
-            value: ''
+            value: '',
         };
         this.setProps = this.setProps.bind(this);
     }
@@ -20,12 +19,9 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Famename
-                    setProps={this.setProps}
-                    {...this.state}
-                />
+                <Famename setProps={this.setProps} {...this.state} />
             </div>
-        )
+        );
     }
 }
 

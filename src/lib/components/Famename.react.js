@@ -15,16 +15,8 @@ import Rank from './components/Rank';
  * which is editable by the user.
  */
 export default class Famename extends Component {
-    constructor() {
-        super();
-        this.state = {
-            rank: {},
-        };
-    }
-
     render() {
         const {id, setProps, nameOutput, gender, ethnicity} = this.props;
-
         console.log('Main Props', this.props);
         return (
             <BrowserRouter>

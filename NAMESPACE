@@ -1,6 +1,11 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 export(Famename)
+export(NavBar)
+export(Rank)
 export(GenderSelectContainer)
+export(rank)
 export(famename)
+export(compare)
 export(genderSelectContainer)
+export(navBar)

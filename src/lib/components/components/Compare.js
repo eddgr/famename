@@ -14,12 +14,17 @@ export default function Compare(props) {
         });
     }, []);
 
+    console.log('Compare props', props);
     return null;
 }
 
 Compare.defaultProps = {};
 
 Compare.propTypes = {
+    /**
+     * Props being passed down from parent
+     */
+    props: PropTypes.node,
     /**
      * Default setProps
      */

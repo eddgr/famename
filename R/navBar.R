@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-genderSelectContainer <- function(props=NULL) {
+navBar <- function(props=NULL) {
     
     props <- list(props=props)
     if (length(props) > 0) {
@@ -8,7 +8,7 @@ genderSelectContainer <- function(props=NULL) {
     }
     component <- list(
         props = props,
-        type = 'GenderSelectContainer',
+        type = 'NavBar',
         namespace = 'famename',
         propNames = c('props'),
         package = 'famename'

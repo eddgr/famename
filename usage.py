@@ -55,7 +55,6 @@ app.layout = html.Div([
         id='react',
         genderSelect='',
         nameOutput=[],
-        # selectedName=[],
         currentPage='',
         gender='ALL',
         ethnicity='ALL'
@@ -71,8 +70,7 @@ app.layout = html.Div([
                 id='rank_table',
                 columns=[
                     {"name": 'Name', "id": 'Name'},
-                    {"name": 'Count', "id": 'Count'},
-                    # {"name": i, "id": i} for i in sorted(dff.columns)
+                    {"name": 'Count', "id": 'Count'}
                 ],
                 page_current=0,
                 page_size=5,
@@ -97,7 +95,6 @@ app.layout = html.Div([
         style={'display': 'none'},
         className="container mt-4"
     )
-
 ])
 
 # CALLBACKS
@@ -217,31 +214,17 @@ def select_gender(gender):
     Output('output_graph', 'style'),
     [
         Input('react', 'currentPage')
-        # Input('react', 'selectedName'),
-        # Input('compare_dropdown', 'value')
     ]
 )
 def show_graph(page):
     if page == 'Rank':
         return {'display': 'none'}
-# def show_graph(name, multi_name):
-    # checks to see if mult_name exists
-    # names_list = []
-    # if name:
-    #     names_list = name
-    # else:
-    #     names_list = multi_name
-    #
-    # if len(names_list) > 0:
-    #     return {'display': 'flex'}
-    # return {'display': 'flex'}
 
 # show graph and trend of name
 @app.callback(
     Output('output_graph', 'figure'),
     [
         Input('react', 'nameOutput'),
-        # Input('react', 'selectedName'),
         Input('compare_dropdown', 'value')
     ]
 )

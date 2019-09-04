@@ -1,65 +1,114 @@
 {
-    "src/lib/components/Famename.react.js": {
-        "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
-        "displayName": "Famename",
-        "methods": [],
-        "props": {
-            "id": {
-                "type": {
-                    "name": "string"
-                },
-                "required": false,
-                "description": "The ID used to identify this component in Dash callbacks."
-            },
-            "genderSelect": {
-                "type": {
-                    "name": "string"
-                },
-                "required": false,
-                "description": ""
-            },
-            "selectedName": {
-                "type": {
-                    "name": "string"
-                },
-                "required": false,
-                "description": ""
-            },
-            "nameOutput": {
-                "type": {
-                    "name": "array"
-                },
-                "required": false,
-                "description": ""
-            }
-        }
-    },
-    "src/lib/components/containers/GenderSelectContainer.js": {
-        "description": "",
-        "displayName": "GenderSelectContainer",
-        "methods": [],
-        "props": {
-            "setProps": {
-                "type": {
-                    "name": "func"
-                },
-                "required": false,
-                "description": ""
-            },
-            "nameOutput": {
-                "type": {
-                    "name": "array"
-                },
-                "required": false,
-                "description": ""
-            },
-            "selectedName": {
-                "type": {
-                    "name": "string"
-                },
-                "required": false,
-                "description": ""
-            }
-        }
+  "src/lib/components/Famename.react.js": {
+    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
+    "displayName": "Famename",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks."
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Default setProps."
+      },
+      "genderSelect": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Selects gender based on user's selection."
+      },
+      "nameOutput": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": "List of names based on gender selected by user."
+      },
+      "currentPage": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Shows current user page."
+      },
+      "gender": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Filter rank datatable by gender."
+      },
+      "ethnicity": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Filter rank datatable by ethnicity."
+      }
     }
+  },
+  "src/lib/components/components/NavBar.js": {
+    "description": "This is where the NavBar lives",
+    "displayName": "NavBar",
+    "methods": [],
+    "props": {
+      "props": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Props being passed down from parent"
+      }
+    }
+  },
+  "src/lib/components/components/Rank.js": {
+    "description": "Displays the most/least popular names",
+    "displayName": "Rank",
+    "methods": [],
+    "props": {
+      "props": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Props being passed down from parent"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Default setProps"
+      }
+    }
+  },
+  "src/lib/components/containers/GenderSelectContainer.js": {
+    "description": "Allows users to select a gender to return a list of random names.",
+    "displayName": "GenderSelectContainer",
+    "methods": [],
+    "props": {
+      "props": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Props being passed down from parent"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Default setProps."
+      }
+    }
+  }
 }

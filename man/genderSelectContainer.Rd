@@ -6,15 +6,13 @@
 \title{GenderSelectContainer component}
 
 \description{
-
+Allows users to select a gender to return a list of random names.
 }
 
 \usage{
-genderSelectContainer(nameOutput=NULL, selectedName=NULL)
+genderSelectContainer(props=NULL)
 }
 
 \arguments{
-\item{nameOutput}{Unnamed list. }
-
-\item{selectedName}{Character. }
+\item{props}{A list of or a singular dash component, string or number. Props being passed down from parent}
 }

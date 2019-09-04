@@ -1,6 +1,6 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-genderSelectContainer <- function(props=NULL) {
+rank <- function(props=NULL) {
     
     props <- list(props=props)
     if (length(props) > 0) {
@@ -8,7 +8,7 @@ genderSelectContainer <- function(props=NULL) {
     }
     component <- list(
         props = props,
-        type = 'GenderSelectContainer',
+        type = 'Rank',
         namespace = 'famename',
         propNames = c('props'),
         package = 'famename'

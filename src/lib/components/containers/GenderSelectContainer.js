@@ -68,6 +68,10 @@ GenderSelectContainer.defaultProps = {};
 
 GenderSelectContainer.propTypes = {
     /**
+     * Props being passed down from parent
+     */
+    props: PropTypes.node,
+    /**
      * Default setProps.
      */
     setProps: PropTypes.func,

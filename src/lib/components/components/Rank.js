@@ -26,6 +26,7 @@ export default function Rank(props) {
             ethnicity: 'ALL',
         });
     }, []);
+    console.log('Rank props', props);
     return (
         <div className="text-center">
             <div className="mb-2">
@@ -130,6 +131,10 @@ export default function Rank(props) {
 Rank.defaultProps = {};
 
 Rank.propTypes = {
+    /**
+     * Props being passed down from parent
+     */
+    props: PropTypes.node,
     /**
      * Default setProps
      */
