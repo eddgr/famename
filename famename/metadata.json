@@ -69,9 +69,58 @@
       }
     }
   },
-  "src/lib/components/components/Rank.js": {
-    "description": "Displays the most/least popular names",
-    "displayName": "Rank",
+  "src/lib/components/components/style.js": {
+    "description": "",
+    "displayName": "RenderButton",
+    "methods": [],
+    "props": {
+      "selectState": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "handleButtonClick": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": ""
+      },
+      "genderEthnicity": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": ""
+      },
+      "cssArray": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "last": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      },
+      "ethnicity": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": ""
+      }
+    }
+  },
+  "src/lib/components/containers/Compare.js": {
+    "description": "This will be used for searching and comparing names",
+    "displayName": "Compare",
     "methods": [],
     "props": {
       "props": {
@@ -108,6 +157,27 @@
         },
         "required": false,
         "description": "Default setProps."
+      }
+    }
+  },
+  "src/lib/components/containers/Rank.js": {
+    "description": "Displays the most/least popular names",
+    "displayName": "Rank",
+    "methods": [],
+    "props": {
+      "props": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "Props being passed down from parent"
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Default setProps"
       }
     }
   }

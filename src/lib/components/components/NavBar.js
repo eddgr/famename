@@ -6,39 +6,29 @@ import {NavLink} from 'react-router-dom';
  * This is where the NavBar lives
  */
 export default function NavBar() {
+    const renderMenuItems = (path, icon) => {
+        return (
+            <li className="nav-item col-4">
+                <NavLink
+                    exact={true}
+                    to={path}
+                    activeClassName="active"
+                    className="nav-link"
+                >
+                    <i className={`fas ${icon}`}></i>
+                </NavLink>
+            </li>
+        );
+    };
+
     return (
         <ul
             className="nav nav-pills fixed-bottom bg-light row justify-content-center align-items-center text-center"
             style={{height: '50px'}}
         >
-            <li className="nav-item col-4">
-                <NavLink
-                    exact={true}
-                    to="/"
-                    activeClassName="active"
-                    className="nav-link"
-                >
-                    <i className="fas fa-home"></i>
-                </NavLink>
-            </li>
-            <li className="nav-item col-4">
-                <NavLink
-                    to="/compare"
-                    activeClassName="active"
-                    className="nav-link"
-                >
-                    <i className="fas fa-search"></i>
-                </NavLink>
-            </li>
-            <li className="nav-item col-4">
-                <NavLink
-                    to="/rank"
-                    activeClassName="active"
-                    className="nav-link"
-                >
-                    <i className="fas fa-fire"></i>
-                </NavLink>
-            </li>
+            {renderMenuItems('/', 'fa-home')}
+            {renderMenuItems('/compare', 'fa-search')}
+            {renderMenuItems('/rank', 'fa-fire')}
         </ul>
     );
 }

@@ -10,9 +10,9 @@ This will be used for searching and comparing names
 }
 
 \usage{
-compare()
+compare(props=NULL)
 }
 
 \arguments{
-
+\item{props}{A list of or a singular dash component, string or number. Props being passed down from parent}
 }

@@ -2,8 +2,10 @@
 
 export(Famename)
 export(NavBar)
-export(Rank)
+export(style)
+export(Compare)
 export(GenderSelectContainer)
+export(Rank)
 export(rank)
 export(famename)
 export(compare)

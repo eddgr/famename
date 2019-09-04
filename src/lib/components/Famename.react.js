@@ -4,8 +4,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import GenderSelectContainer from './containers/GenderSelectContainer';
 import NavBar from './components/NavBar';
-import Compare from './components/Compare';
-import Rank from './components/Rank';
+import Compare from './containers/Compare';
+import Rank from './containers/Rank';
 
 /**
  * ExampleComponent is an example component.
