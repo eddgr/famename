@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import Rank from './containers/Rank';
  * It renders an input with the property `value`
  * which is editable by the user.
  */
-export default class Famename extends Component {
+export default class Famename extends PureComponent {
     render() {
         const {id, setProps, nameOutput, gender, ethnicity} = this.props;
         console.log('Main Props', this.props);
