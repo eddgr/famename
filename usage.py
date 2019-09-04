@@ -151,7 +151,7 @@ def update_table(page_current, page_size, sort_by, gender, ethnicity):
     Output('compare_dropdown', 'value'),
     [Input('react', 'currentPage')]
 )
-def set_page():
+def set_page(page_name):
     return []
 
 # hide compare_dropdown
