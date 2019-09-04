@@ -12,10 +12,14 @@ export default function Compare(props) {
             nameOutput: [],
             currentPage: 'Compare',
         });
+        console.log('Compare props', props);
     }, []);
 
-    console.log('Compare props', props);
-    return <></>;
+    return (
+        <>
+            <h2 className="text-center mt-4 mb-4">Compare</h2>
+        </>
+    );
 }
 
 Compare.defaultProps = {};
