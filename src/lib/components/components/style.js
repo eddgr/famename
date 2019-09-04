@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 
-export const renderButton = (
+export const renderButton = ({
     selectState,
     handleButtonClick,
     genderEthnicity,
     cssArray,
     last,
-    ethnicity = false
-) => {
+    ethnicity,
+}) => {
     const capitalizeGender = ethnicity
         ? genderEthnicity.split(' ')[0][0] +
           genderEthnicity
@@ -15,7 +15,6 @@ export const renderButton = (
               .slice(1)
               .toLowerCase()
         : genderEthnicity[0] + genderEthnicity.slice(1).toLowerCase();
-
     return (
         <button
             className={

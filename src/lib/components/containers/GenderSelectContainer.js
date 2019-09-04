@@ -28,27 +28,27 @@ export default function GenderSelectContainer(props) {
     return (
         <div className="row justify-content-center align-items-center flex-column">
             <div>
-                {renderButton(
-                    selectGender,
-                    handleButtonClick,
-                    'MALE',
-                    ['btn-primary', 'btn-outline-primary'],
-                    false
-                )}
-                {renderButton(
-                    selectGender,
-                    handleButtonClick,
-                    'FEMALE',
-                    ['btn-danger', 'btn-outline-danger'],
-                    false
-                )}
-                {renderButton(
-                    selectGender,
-                    handleButtonClick,
-                    'ALL',
-                    ['btn-warning', 'btn-outline-warning'],
-                    true
-                )}
+                {renderButton({
+                    selectState: selectGender,
+                    handleButtonClick: handleButtonClick,
+                    genderEthnicity: 'MALE',
+                    cssArray: ['btn-primary', 'btn-outline-primary'],
+                    last: false,
+                })}
+                {renderButton({
+                    selectState: selectGender,
+                    handleButtonClick: handleButtonClick,
+                    genderEthnicity: 'FEMALE',
+                    cssArray: ['btn-danger', 'btn-outline-danger'],
+                    last: false,
+                })}
+                {renderButton({
+                    selectState: selectGender,
+                    handleButtonClick: handleButtonClick,
+                    genderEthnicity: 'ALL',
+                    cssArray: ['btn-warning', 'btn-outline-warning'],
+                    last: true,
+                })}
             </div>
             <div className="mt-2">
                 <em>Press again for a new name.</em>

@@ -1,15 +1,15 @@
 from .Famename import Famename
-from .Compare import Compare
 from .NavBar import NavBar
-from .Rank import Rank
 from .style import style
+from .Compare import Compare
 from .GenderSelectContainer import GenderSelectContainer
+from .Rank import Rank
 
 __all__ = [
     "Famename",
-    "Compare",
     "NavBar",
-    "Rank",
     "style",
-    "GenderSelectContainer"
+    "Compare",
+    "GenderSelectContainer",
+    "Rank"
 ]
