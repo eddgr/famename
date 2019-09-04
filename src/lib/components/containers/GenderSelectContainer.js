@@ -22,38 +22,41 @@ export default function GenderSelectContainer(props) {
             currentPage: 'GenderSelectContainer',
             nameOutput: [],
         });
+        console.log('GenderSelectContainer props', props);
     }, []);
 
-    console.log('GenderSelectContainer props', props);
     return (
-        <div className="row justify-content-center align-items-center flex-column">
-            <div>
-                <RenderButton
-                    selectState={selectGender}
-                    handleButtonClick={handleButtonClick}
-                    genderEthnicity={'MALE'}
-                    cssArray={['btn-primary', 'btn-outline-primary']}
-                    last={false}
-                />
-                <RenderButton
-                    selectState={selectGender}
-                    handleButtonClick={handleButtonClick}
-                    genderEthnicity={'FEMALE'}
-                    cssArray={['btn-danger', 'btn-outline-danger']}
-                    last={false}
-                />
-                <RenderButton
-                    selectState={selectGender}
-                    handleButtonClick={handleButtonClick}
-                    genderEthnicity={'ALL'}
-                    cssArray={['btn-warning', 'btn-outline-warning']}
-                    last={true}
-                />
+        <>
+            <h2 className="text-center mt-4 mb-4">Select a Gender</h2>
+            <div className="row justify-content-center align-items-center flex-column">
+                <div>
+                    <RenderButton
+                        selectState={selectGender}
+                        handleButtonClick={handleButtonClick}
+                        genderEthnicity={'MALE'}
+                        cssArray={['btn-primary', 'btn-outline-primary']}
+                        last={false}
+                    />
+                    <RenderButton
+                        selectState={selectGender}
+                        handleButtonClick={handleButtonClick}
+                        genderEthnicity={'FEMALE'}
+                        cssArray={['btn-danger', 'btn-outline-danger']}
+                        last={false}
+                    />
+                    <RenderButton
+                        selectState={selectGender}
+                        handleButtonClick={handleButtonClick}
+                        genderEthnicity={'ALL'}
+                        cssArray={['btn-warning', 'btn-outline-warning']}
+                        last={true}
+                    />
+                </div>
+                <div className="mt-2">
+                    <em>Press again for a new name.</em>
+                </div>
             </div>
-            <div className="mt-2">
-                <em>Press again for a new name.</em>
-            </div>
-        </div>
+        </>
     );
 }
 

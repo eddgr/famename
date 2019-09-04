@@ -50,7 +50,6 @@ for name in first_name:
     options.append({'label': name.capitalize(), 'value': name.upper()})
 
 app.layout = html.Div([
-    html.H2(id='page_title', children='Fame Name', className='text-center mt-4'),
     famename.Famename(
         id='react',
         genderSelect='',
@@ -98,18 +97,6 @@ app.layout = html.Div([
 ])
 
 # CALLBACKS
-# setting page title header
-@app.callback(
-    Output('page_title', 'children'),
-    [Input('react', 'currentPage')]
-)
-def set_title(title):
-    if title == 'GenderSelectContainer':
-        return 'Select a Gender'
-    elif title == 'Rank':
-        return 'Popular Names'
-    return title
-
 # datatable
 @app.callback(
     Output('rank_table', 'data'),
@@ -164,7 +151,7 @@ def update_table(page_current, page_size, sort_by, gender, ethnicity):
     Output('compare_dropdown', 'value'),
     [Input('react', 'currentPage')]
 )
-def set_page(page_name):
+def set_page():
     return []
 
 # hide compare_dropdown
